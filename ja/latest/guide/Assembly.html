@@ -1,0 +1,1387 @@
+﻿<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>アセンブリ - Mini Pupper 2.0.0-alpha ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Software Calibration" href="SoftwareCalibration.html" />
+    <link rel="prev" title="Quick Start Guide" href="QuickStartGuide.html" /> 
+<script async="" type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="minipupperdocs" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/guide/Assembly.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Mini Pupper
+         </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">ガイド</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Features.html">特徴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToOrder.html">ご注文方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStartGuide.html">クイックスタートガイド</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">組立</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#assemble-mini-pupper">Mini Pupperの組み立て</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#update-change-points-after-april-15-2022">0.2022年4月15日以降に変更点を更新</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#write-the-pre-built-image-into-microsd">1.ビルド済みのイメージをmicroSDに書き込む。</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tools">ツール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-1-charging-the-battery">ステップ1.1 バッテリーの充電</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-2-download-the-image">ステップ1.2 画像のダウンロード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-3-write-the-image-into-microsd-card">ステップ1.3 microSDカードにイメージを書き込む</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#position-of-the-screws">2.ネジの位置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#legs-assembly">3.脚の組み立て</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">ツール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bolt-to-use">使用ボルト</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-1-single-leg">ステップ3.1 シングルレッグ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-2-four-legs">ステップ3.2 4本足</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-3-locktite">ステップ3.3 ロックタイト</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hips-assembly">4.ヒップアッセンブリー</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-4-1-hip">ステップ4.1 ヒップ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-4-2-four-hips">ステップ4.2 フォーヒップ</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#body-frame-assembly">5.ボディ・フレーム・アセンブリ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-1-center-parts">ステップ5.1 センターパーツ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-2-front-parts">ステップ5.2 フロント・パーツ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-3-rear-side">ステップ5.3 リア側</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-4-battery">ステップ5.4 バッテリー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-5-bottom-plate">ステップ5.5 ボトムプレート</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-6-display-and-frame-of-face">ステップ5.6 顔の表示とフレーム</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-7-custom-circuit-board">ステップ5.7 カスタム基板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-8-fan">ステップ5.8 ファン</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-9-raspberry-pi-4">ステップ5.9 Raspberry Pi 4</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cover-assembly">6.カバーアセンブリ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-6-1-side-panels">ステップ6.1 サイドパネル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-6-2-shin-guards">ステップ6.2 シンガード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-6-3-shoulders">ステップ6.3 肩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-6-4-top-cover">ステップ6.4 トップカバー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-6-5-shoes">ステップ6.5 シューズ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-6-6-completion">ステップ6.6の完了！</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#add-on-assembly">7.アドオンアッセンブリー</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-7-1-lidar">ステップ7.1 ライダー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-7-2-camera">ステップ7.2 カメラ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-7-3-completion">ステップ7.3 完成！</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#assemble-mini-pupper-2">Mini Pupper2を組み立てる</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.ビルド済みのイメージをmicroSDに書き込む。</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">ツール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">ステップ1.1 バッテリーの充電</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">ステップ1.2 画像のダウンロード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-3-write-the-image-into-a-microsd-card">ステップ1.3 microSDカードにイメージを書き込む</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">2.ネジの位置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">3.脚の組み立て</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">使用ボルト</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">ステップ3.1 シングルレッグ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">ステップ3.2 4本足</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">ステップ3.3 ロックタイト</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#display-and-frame-of-face">4.顔の表示とフレーム</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#body-frame-and-hips-assembly">5.ボディ・フレームとヒップ・アセンブリ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-1-body-center-parts">ステップ5.1 ボディセンターパーツ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-2-hip-parts">ステップ5.2 ヒップ・パーツ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-3-front-and-back-body-parts">ステップ5.3 前身頃と後身頃</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-4-assemble-four-legs-to-the-body">ステップ5.4 4本の脚を本体に組み付ける</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-5-assemble-the-battery-to-the-body">ステップ5.5 バッテリーを本体に組み付ける</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-6-assemble-the-speaker">ステップ5.6 スピーカーの組み立て</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">6.カバーアセンブリ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">ステップ6.1 サイドパネル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">ステップ6.2 シンガード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">ステップ6.3 肩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-6-4-shoes">ステップ6.4 シューズ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#complete">完全だ！</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">7.アドオンアセンブリ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id19">ステップ7.1 ライダー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">ステップ7.2 カメラ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#assemble-mini-pupper-2-pro">Mini Pupper2Proを組み立てる</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">1.ビルド済みのイメージをmicroSDに書き込む。</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id23">ツール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">ステップ1.1 バッテリーの充電</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">ステップ1.2 画像のダウンロード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27">ステップ1.3 microSDカードにイメージを書き込む</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">2.ネジの位置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">3.脚の組み立て</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id30">使用ボルト</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">ステップ3.1 シングルレッグ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">ステップ3.2 4本足</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33">ステップ3.3 ロックタイト</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">4.顔の表示とフレーム</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">5.ボディ・フレームとヒップ・アセンブリ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id36">ステップ5.1 ボディセンターパーツ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id37">ステップ5.2 ヒップ・パーツ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38">ステップ5.3 前身頃と後身頃</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id39">ステップ5.4 4本の脚を本体に組み付ける</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id40">ステップ5.5 バッテリーを本体に組み付ける</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id41">ステップ5.6 スピーカーの組み立て</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id42">6.カバーアセンブリ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id43">ステップ6.1 サイドパネル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id44">ステップ6.2 シンガード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id45">ステップ6.3 肩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id46">ステップ6.4 シューズ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id47">完全だ！</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id48">7.アドオンアセンブリ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id49">ステップ7.1 ライダー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id51">ステップ7.2 カメラ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SoftwareCalibration.html">ソフトウェアキャリブレーション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2Guide.html">ROS2ガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">機械学習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning.html">強化学習(RL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultimodalGenAI.html">マルチモーダル生成AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">参考文献</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/Design.html">Mini Pupperのメカニカルデザイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/PCB.html">プリント基板</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/FAQ.html">FAQ（よくある質問）</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
+         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+         <a href="../index.html">Mini Pupper</a>
+     </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> "</li>
+      <li>組立</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guide/Assembly.rst.txt" rel="nofollow"> ページのソースを見る</a>     </li>
+  </ul>
+  <hr />
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="assembly">
+<h1><a class="toc-backref" href="#id53">アセンブリ</a><a class="headerlink" href="#assembly" title="Permalink to this headline"></a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">内容</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#assembly" id="id53">組立</a></p>
+<ul>
+<li><p><a class="reference internal" href="#assemble-mini-pupper" id="id54">Mini Pupperの組み立て</a></p></li>
+<li><p><a class="reference internal" href="#assemble-mini-pupper-2" id="id55">Mini Pupper2を組み立てる</a></p></li>
+<li><p><a class="reference internal" href="#assemble-mini-pupper-2-pro" id="id56">Mini Pupper2Proを組み立てる</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="assemble-mini-pupper">
+<h2><a class="toc-backref" href="#id54">Mini Pupperの組み立て</a><a class="headerlink" href="#assemble-mini-pupper" title="Permalink to this headline"></a></h2>
+<p>これは組み立て済みレッグキットのビデオクリップです。より詳細な手順については、以下のセクションを参照してください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/R-KgMSxkVVw?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><p>Mini Pupper Fusion 360 CADモデル<a class="reference external" href="https://a360.co/3wFLSlT">https://a360.co/3wFLSlT もご参照ください。</a></p>
+<iframe src="https://gmail1515401.autodesk360.com/g/shares/SH35dfcQT936092f0e43940e1e402362e6d4?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe><section id="update-change-points-after-april-15-2022">
+<h3>0.2022年4月15日以降に変更点を更新<a class="headerlink" href="#update-change-points-after-april-15-2022" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>ボディとヒップのパーツを3Dプリントから金型に更新。</p></li>
+<li><p>オリジナルの4つのヒップパーツを金型用に再設計し、1つに統合した。</p></li>
+<li><p>2022年4月15日以降にMini Pupperのキットを入手された場合、組み立てはより簡単になります。</p></li>
+<li><p>もしあなたが3Dプリンターを持っていて、以前の3Dプリンターで印刷したデザインを使いたいのであれば、それでも構いません。</p></li>
+</ul>
+</section>
+<section id="write-the-pre-built-image-into-microsd">
+<h3>1.ビルド済みのイメージをmicroSDに書き込む<a class="headerlink" href="#write-the-pre-built-image-into-microsd" title="Permalink to this headline"></a></h3>
+<section id="tools">
+<h4>ツール<a class="headerlink" href="#tools" title="Permalink to this headline"></a></h4>
+<p>キットに含まれる工具に加えて、組み立てには以下のものが必要です。</p>
+<ul class="simple">
+<li><p>USBキーボード</p></li>
+<li><p>USBマウス</p></li>
+<li><p>PC</p></li>
+<li><p>microSDカードリーダー</p></li>
+<li><p>HDMIディスプレイ</p></li>
+<li><p>マイクロHDMIケーブル</p></li>
+<li><p>USB充電器</p></li>
+</ul>
+</section>
+<section id="step-1-1-charging-the-battery">
+<h4>ステップ1.1 充電<a class="headerlink" href="#step-1-1-charging-the-battery" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>バッテリーはUSB経由で充電される（USBソケットは写真を参照）。</p></li>
+</ul>
+<p>LEDライト：緑は十分な電力があることを意味し、赤は充電が必要であることを意味します。</p>
+<p>5V/2Aのアダプターを使用すると、バッテリーICが1Aに変更されます。80%充電でランプが緑色になるまで約1時間、100%充電までさらに約1時間かかりますが、ランプが緑色になれば使用可能です。</p>
+<img alt="../_images/100.jpg" class="align-center" src="../_images/100.jpg" />
+</section>
+<section id="step-1-2-download-the-image">
+<h4>ステップ1.2イメージのダウンロード<a class="headerlink" href="#step-1-2-download-the-image" title="Permalink to this headline"></a></h4>
+<ul>
+<li><p>最新の画像ファイルは以下のフォルダからダウンロードできます。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://drive.google.com/drive/folders/1c0ShF-R8yxiMnCgMnSOctBpkW707b1q6?usp=sharing">Release.from.MangDang</a></p>
+</div></blockquote>
+</li>
+<li><p>下の写真はカスタムキャリーボード。</p></li>
+</ul>
+<img alt="../_images/147.jpg" class="align-center" src="../_images/147.jpg" />
+<p>"xxx_MiniPupper_Controller_Ubuntu_22.04.img "は、Ubuntu 22.04バージョンのイメージを意味します。</p>
+<p>"xxx.MiniPupper_ROS&amp;OpenCV_Ubuntu20.04.03.img "は、Ubuntu + ROS + OpenCVバージョンのSLAM &amp; Navigation &amp; AI用イメージファイルです。</p>
+</section>
+<section id="step-1-3-write-the-image-into-microsd-card">
+<h4>ステップ1.3 microSDカードに画像を書き込む<a class="headerlink" href="#step-1-3-write-the-image-into-microsd-card" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>microSDカードをPCのSDカードリーダーに挿入し、イメージを書き込みます。イメージ作成ツールのbalenaEtcherかWin32DiskImagerが簡単で確実なのでおすすめです。完了までに時間がかかります。</p></li>
+<li><p>PCからSDカードを取り出し、Raspberry piに挿入します。</p></li>
+</ul>
+<img alt="../_images/145.jpg" class="align-center" src="../_images/145.jpg" />
+</section>
+</section>
+<section id="position-of-the-screws">
+<h3>2.ネジの位置<a class="headerlink" href="#position-of-the-screws" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>写真はネジの位置を簡単に示している。</p></li>
+</ul>
+<img alt="../_images/136.jpg" class="align-center" src="../_images/136.jpg" />
+<img alt="../_images/137.jpg" class="align-center" src="../_images/137.jpg" />
+<img alt="../_images/138.jpg" class="align-center" src="../_images/138.jpg" />
+<img alt="../_images/139.jpg" class="align-center" src="../_images/139.jpg" />
+<p>(上の写真は2022年4月15日以前のバージョン、下の写真は2022年4月15日以降のバージョン)</p>
+<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
+<img alt="../_images/140.jpg" class="align-center" src="../_images/140.jpg" />
+<img alt="../_images/144.jpg" class="align-center" src="../_images/144.jpg" />
+<p>(上の写真は2022年4月15日以前のバージョン、下の写真は2022年4月15日以降のバージョン)</p>
+<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
+<img alt="../_images/141.jpg" class="align-center" src="../_images/141.jpg" />
+<img alt="../_images/142.jpg" class="align-center" src="../_images/142.jpg" />
+</section>
+<section id="legs-assembly">
+<h3>3.脚組み立て<a class="headerlink" href="#legs-assembly" title="Permalink to this headline"></a></h3>
+<p>以下のビデオクリップをご覧ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ut7UnS3CTZs?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><section id="id1">
+<h4><a class="headerlink" href="#id1" title="Permalink to this headline">ツール</a></h4>
+<p>キットに含まれる工具に加えて、組み立てには以下のものが必要です。</p>
+<ul class="simple">
+<li><p>ロックタイト</p></li>
+</ul>
+<p>初心者の方にいきなりロックタイトを使用することはお勧めしません。</p>
+<p>ロックタイトはナットの緩みを防止するが、緩みに気づいたときだけ締めればよいので、必須ではない。</p>
+</section>
+<section id="bolt-to-use">
+<h4>使用ボルト<a class="headerlink" href="#bolt-to-use" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>M2x5mm 2x4=8 ①+②，⑤+⑥</p></li>
+<li><p>M2x8mm 3x4=12 ②+③④+⑦③+④</p></li>
+<li><p>M2x12mm 1x4=4 ⑤+⑦ ⑤+7</p></li>
+<li><p>M2x14mm 1x4=4 ③+⑤ ③+⑤ ③+⑤</p></li>
+</ul>
+</section>
+<section id="step-3-1-single-leg">
+<h4>ステップ3.1 シングルレッグ<a class="headerlink" href="#step-3-1-single-leg" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>本の脚を組み立てる。右側の前面と背面は同じで、左側の前面と背面も同じである。右側の組み立て方を説明する。</p></li>
+<li><p>ビデオによる説明は、リンク<a class="reference external" href="https://youtu.be/Ut7UnS3CTZs">https://youtu.be/Ut7UnS3CTZs</a>をご参照ください。</p></li>
+<li><p>各パーツには以下のように番号を振って説明している。</p></li>
+</ul>
+<img alt="../_images/1.jpg" class="align-center" src="../_images/1.jpg" />
+<p>と②を組み立てる</p>
+<ul class="simple">
+<li><p>ネジはM2×5mmを1本使用し、②の底面から上に向かって①のネジ穴に差し込んで締めます。の側面に注意してください。</p></li>
+<li><p>のボールベアリング2個は、下の写真のように奥まで入れて、端が少し見えるようにします。ボールベアリングを叩き、隙間なく押し込む。</p></li>
+</ul>
+<img alt="../_images/2.jpg" class="align-center" src="../_images/2.jpg" />
+<img alt="../_images/3.jpg" class="align-center" src="../_images/3.jpg" />
+<img alt="../_images/4.jpg" class="align-center" src="../_images/4.jpg" />
+<img alt="../_images/6.jpg" class="align-center" src="../_images/6.jpg" />
+<p>と③を組み立てる</p>
+<ul class="simple">
+<li><p>M2×8mmのネジとM2のロックナットを使用する。ネジを③の下から上へ差し込み、②を貫通させてナットで締める。このとき③の向きに注意することが大切です。真ん中の穴の位置をよく見てください。</p></li>
+</ul>
+<img alt="../_images/7.jpg" class="align-center" src="../_images/7.jpg" />
+<img alt="../_images/8.jpg" class="align-center" src="../_images/8.jpg" />
+<img alt="../_images/9.jpg" class="align-center" src="../_images/9.jpg" />
+<p>の長さの調整</p>
+<ul class="simple">
+<li><p>の長さは必ず⑤の長さと合わせること。長さを調整する際は、長めのネジを2本使うと合わせやすい。長さの調整が終わったら、すべて分解する。</p></li>
+</ul>
+<img alt="../_images/10.jpg" class="align-center" src="../_images/10.jpg" />
+<img alt="../_images/11.jpg" class="align-center" src="../_images/11.jpg" />
+<ul class="simple">
+<li><p>ねじりにくい場合は、ドライバーを2本使って補助するとよい。</p></li>
+</ul>
+<img alt="../_images/11_1.jpg" class="align-center" src="../_images/11_1.jpg" />
+<p>と⑥を組み立てる。</p>
+<ul class="simple">
+<li><p>M2×5mmのネジを1本使用する。まず⑤にビスを差し込み、⑥の穴に差し込んで締めます。このとき、⑥の大きな穴が表面側を向くようにしてください。</p></li>
+</ul>
+<img alt="../_images/12.jpg" class="align-center" src="../_images/12.jpg" />
+<img alt="../_images/13.jpg" class="align-center" src="../_images/13.jpg" />
+<img alt="../_images/14.jpg" class="align-center" src="../_images/14.jpg" />
+<p>と⑦を組み立てる。</p>
+<ul class="simple">
+<li><p>M2x12mmのネジ、M2のロックナット、2組のボールベアリングを使用する。それぞれのボールベアリングは3つの部品で構成されており、溝がある面を内側に向けた上部と下部がある。1組のボールベアリングにネジを挿入する。次にネジを⑦の穴に差し込む。このとき、⑦の反った面を見て、向きが合っているか確認する。もう一組のボールベアリングをねじ込みます。最後に⑤にネジを入れ、ナットで締めます。</p></li>
+</ul>
+<img alt="../_images/15.jpg" class="align-center" src="../_images/15.jpg" />
+<img alt="../_images/18.jpg" class="align-center" src="../_images/18.jpg" />
+<img alt="../_images/19.jpg" class="align-center" src="../_images/19.jpg" />
+<img alt="../_images/21.jpg" class="align-center" src="../_images/21.jpg" />
+<img alt="../_images/20.jpg" class="align-center" src="../_images/20.jpg" />
+<p>と⑦を組み立てる</p>
+<ul class="simple">
+<li><p>M2×8mmのネジとM2のナットを使う。ネジを⑦に差し込み、④を通し、ナットで締める。の表裏の向きはどちらでもよい。</p></li>
+</ul>
+<p>左右の脚</p>
+<img alt="../_images/22.jpg" class="align-center" src="../_images/22.jpg" />
+<img alt="../_images/23.jpg" class="align-center" src="../_images/23.jpg" />
+<img alt="../_images/24.jpg" class="align-center" src="../_images/24.jpg" />
+<p>と④を組み立てる</p>
+<ul class="simple">
+<li><p>M2×8mmのネジとM2のナットを使う。ネジを③に差し込み、④を通し、ナットで締める。</p></li>
+</ul>
+<p>左右の脚</p>
+<img alt="../_images/25.jpg" class="align-center" src="../_images/25.jpg" />
+<img alt="../_images/26.jpg" class="align-center" src="../_images/26.jpg" />
+<p>と⑤を組み立てる</p>
+<ul class="simple">
+<li><p>M2×14mmのネジとボールベアリングを2セット使用する。ベアリング、③、ベアリング、⑤の順にネジを通します。ネジは固定しませんが、次の工程でサーボを取り付けるときにネジを締めます。</p></li>
+</ul>
+<img alt="../_images/27.jpg" class="align-center" src="../_images/27.jpg" />
+<img alt="../_images/29.jpg" class="align-center" src="../_images/29.jpg" />
+<img alt="../_images/30.jpg" class="align-center" src="../_images/30.jpg" />
+<p>右足の完成</p>
+<ul class="simple">
+<li><p>これで右側に片足ができた。いろいろな角度から見てください。左足は右足と左右対称でなければなりません。</p></li>
+</ul>
+<img alt="../_images/31.jpg" class="align-center" src="../_images/31.jpg" />
+<img alt="../_images/32.jpg" class="align-center" src="../_images/32.jpg" />
+<img alt="../_images/33.jpg" class="align-center" src="../_images/33.jpg" />
+<p>反対側</p>
+<img alt="../_images/34.jpg" class="align-center" src="../_images/34.jpg" />
+<img alt="../_images/35.jpg" class="align-center" src="../_images/35.jpg" />
+</section>
+<section id="step-3-2-four-legs">
+<h4>ステップ3.2 4脚<a class="headerlink" href="#step-3-2-four-legs" title="Permalink to this headline"></a></h4>
+<img alt="../_images/36.jpg" class="align-center" src="../_images/36.jpg" />
+</section>
+<section id="step-3-3-locktite">
+<h4>ステップ3.3 ロックタイト<a class="headerlink" href="#step-3-3-locktite" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>ナットは可動継手にあるため、強く締めすぎるとすぐに緩む。ロックタイトで固定すべきである。ナットは強い力で緩めることができるので、後で分解することも可能である。</p></li>
+</ul>
+<img alt="../_images/37.jpg" class="align-center" src="../_images/37.jpg" />
+<ul class="simple">
+<li><p>下の写真のように、接着剤で固定されているネジもある。</p></li>
+</ul>
+<img alt="../_images/37_2.jpg" class="align-center" src="../_images/37_2.jpg" />
+</section>
+</section>
+<section id="hips-assembly">
+<h3>4.ヒップアッセンブリー<a class="headerlink" href="#hips-assembly" title="Permalink to this headline"></a></h3>
+<section id="step-4-1-hip">
+<h4>ステップ4.1<a class="headerlink" href="#step-4-1-hip" title="Permalink to this headline">ヒップ</a></h4>
+<p>以下のビデオクリップをご覧ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/n1rLuf3AmUc?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><p>サーボケーブルは2種類あり、No.1,4,7,10は9cm、それ以外は15cm。</p>
+<ul class="simple">
+<li><p>各サーボの位置は下図を参照してください。</p></li>
+</ul>
+<img alt="../_images/52.jpg" class="align-center" src="../_images/52.jpg" />
+<ul class="simple">
+<li><p>右腰後部の組み立て方を示す。</p></li>
+</ul>
+<p>サーボシャフトが正しい位置にあるか確認する。 出力軸に中間位置の目印を付け、左の写真のように故障で出力軸が中間位置にある。組立中に中段の写真のように軸の位置が変わることがありますので、その場合はサーボホーンで出力軸を正しい位置に移動させ、最後に右の写真のようにサーボホーンをその位置に合わせます。</p>
+<img alt="../_images/39.jpg" class="align-center" src="../_images/39.jpg" />
+<p>サーボとヒップパーツを接続する。</p>
+<img alt="../_images/40_1.jpg" class="align-center" src="../_images/40_1.jpg" />
+<img alt="../_images/40_2.jpg" class="align-center" src="../_images/40_2.jpg" />
+<p>ヒップパーツに2つのサーボを入れる</p>
+<ul class="simple">
+<li><p>箱にサーボを2個入れ、M2x6mmのネジで固定する。</p></li>
+</ul>
+<img alt="../_images/42_1.jpg" class="align-center" src="../_images/42_1.jpg" />
+<p>4つのヒップパーツは、サーボの位置を参照してください。</p>
+<img alt="../_images/42.jpg" class="align-center" src="../_images/42.jpg" />
+<p>脚とヒップを組み立てる</p>
+<p>技術的な知識がない場合は、キャリブレーションの段階で脚を股関節に取り付けると簡単です。</p>
+<p>初めて4脚ロボットを組み立てる場合、ロックタイトの使用はお勧めしません。</p>
+<ul class="simple">
+<li><p>M2x12mmのネジを使って脚を腰に取り付けます。脚はマニュアルにあるように約45°傾けます。</p></li>
+</ul>
+<img alt="../_images/43_1.jpg" class="align-center" src="../_images/43_1.jpg" />
+<ul class="simple">
+<li><p>ネジをロックタイトで締める。爪楊枝を使ってサーボのネジ穴にロックタイトを塗る。</p></li>
+</ul>
+<img alt="../_images/45.jpg" class="align-center" src="../_images/45.jpg" />
+<img alt="../_images/45_1.jpg" class="align-center" src="../_images/45_1.jpg" />
+<img alt="../_images/46_1.jpg" class="align-center" src="../_images/46_1.jpg" />
+</section>
+<section id="step-4-2-four-hips">
+<h4>ステップ4.2<a class="headerlink" href="#step-4-2-four-hips" title="Permalink to this headline">フォーヒップス</a></h4>
+<img alt="../_images/47.jpg" class="align-center" src="../_images/47.jpg" />
+<p>サーボギア出力軸の位置にご注意ください。</p>
+<img alt="../_images/47_left.jpg" class="align-center" src="../_images/47_left.jpg" />
+<img alt="../_images/47_right.jpg" class="align-center" src="../_images/47_right.jpg" />
+</section>
+</section>
+<section id="body-frame-assembly">
+<h3>5.<a class="headerlink" href="#body-frame-assembly" title="Permalink to this headline">ボディフレームアセンブリ</a></h3>
+<section id="step-5-1-center-parts">
+<h4>ステップ5.1 センターパーツ<a class="headerlink" href="#step-5-1-center-parts" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>各サーボの位置は以下のようになっている。</p></li>
+</ul>
+<img alt="../_images/52.jpg" class="align-center" src="../_images/52.jpg" />
+<p>サーボケーブルの長さは、No.1,4,7,10 が 9cm、No.1,4,7,10 が 15cm です。</p>
+<ul class="simple">
+<li><p>この作業では、ケーブルにマスキングテープを貼り、サーボの数を書いておくと後で楽だ。</p></li>
+</ul>
+<img alt="../_images/48_1.jpg" class="align-center" src="../_images/48_1.jpg" />
+<img alt="../_images/49_1.jpg" class="align-center" src="../_images/49_1.jpg" />
+</section>
+<section id="step-5-2-front-parts">
+<h4>ステップ5.2 フロント・パーツ<a class="headerlink" href="#step-5-2-front-parts" title="Permalink to this headline"></a></h4>
+<p>*フロント<a href="#id2"><span class="problematic" id="id3">部分は</span></a>液晶画面を固定するためのものです。背面と間違えないように注意。</p>
+<img alt="../_images/53_1.jpg" class="align-center" src="../_images/53_1.jpg" />
+<img alt="../_images/54_1.jpg" class="align-center" src="../_images/54_1.jpg" />
+</section>
+<section id="step-5-3-rear-side">
+<h4>ステップ5.3 リア<a class="headerlink" href="#step-5-3-rear-side" title="Permalink to this headline">側</a></h4>
+<ul class="simple">
+<li><p>フロント部分と同じ手順。</p></li>
+</ul>
+<img alt="../_images/56_1.jpg" class="align-center" src="../_images/56_1.jpg" />
+<img alt="../_images/57_1.jpg" class="align-center" src="../_images/57_1.jpg" />
+<img alt="../_images/58_1.jpg" class="align-center" src="../_images/58_1.jpg" />
+<img alt="../_images/59_1.jpg" class="align-center" src="../_images/59_1.jpg" />
+<img alt="../_images/51_1.jpg" class="align-center" src="../_images/51_1.jpg" />
+</section>
+<section id="step-5-4-battery">
+<h4>ステップ5.4<a class="headerlink" href="#step-5-4-battery" title="Permalink to this headline">バッテリー</a></h4>
+<ul class="simple">
+<li><p>バッテリーをDIYする場合は、最初に私たちのバッテリーの仕様を確認してください、特に電圧は7.4V未満でなければなりません、また、他のバッカーの仕事を参照することができます<a class="reference external" href="https://www.facebook.com/groups/716473723088464/posts/777616293640873/">https://www.facebook.com/groups/716473723088464/posts/777616293640873/</a></p></li>
+<li><p>バッテリーパックを取り付ける。</p></li>
+</ul>
+<img alt="../_images/83.jpg" class="align-center" src="../_images/83.jpg" />
+<ul class="simple">
+<li><p>カーボンファイバーのフロントとリアの向きに注意。</p></li>
+</ul>
+<img alt="../_images/84.jpg" class="align-center" src="../_images/84.jpg" />
+<ul class="simple">
+<li><p>バッテリーを後方にスライドさせ、固定します。ケーブルを底板の穴に通し、上まで持ってくる。</p></li>
+</ul>
+<img alt="../_images/85.jpg" class="align-center" src="../_images/85.jpg" />
+</section>
+<section id="step-5-5-bottom-plate">
+<h4>ステップ5.5 底板<a class="headerlink" href="#step-5-5-bottom-plate" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>プレートの向きは、穴が正面に来るようにしなければならない。</p></li>
+</ul>
+<img alt="../_images/61.jpg" class="align-center" src="../_images/61.jpg" />
+<ul class="simple">
+<li><p>脚が動かない場合は、①の部分を回してください。</p></li>
+</ul>
+<img alt="../_images/59_2.jpg" class="align-center" src="../_images/59_2.jpg" />
+<img alt="../_images/59_3.gif" class="align-center" src="../_images/59_3.gif" />
+</section>
+<section id="step-5-6-display-and-frame-of-face">
+<h4>ステップ5.6<a class="headerlink" href="#step-5-6-display-and-frame-of-face" title="Permalink to this headline">faceの</a>表示とフレーム</h4>
+<ul class="simple">
+<li><p>ディスプレイの保護シートを剥がす。ディスプレイの端にある細いフレキシブルケーブルを折りたたむ。基板とディスプレイを本体に取り付けます。ディスプレイを取り付ける際は、棒などでフレキシブルケーブルを軽く押し、できるだけ奥に入るようにするとよい。</p></li>
+</ul>
+<img alt="../_images/74.jpg" class="align-center" src="../_images/74.jpg" />
+<img alt="../_images/75.jpg" class="align-center" src="../_images/75.jpg" />
+<img alt="../_images/76.jpg" class="align-center" src="../_images/76.jpg" />
+<img alt="../_images/77.jpg" class="align-center" src="../_images/77.jpg" />
+<img alt="../_images/78.jpg" class="align-center" src="../_images/78.jpg" />
+<ul class="simple">
+<li><p>黄色い部分には表と裏があるので注意。</p></li>
+</ul>
+<img alt="../_images/79.jpg" class="align-center" src="../_images/79.jpg" />
+<img alt="../_images/80.jpg" class="align-center" src="../_images/80.jpg" />
+<img alt="../_images/81.jpg" class="align-center" src="../_images/81.jpg" />
+</section>
+<section id="step-5-7-custom-circuit-board">
+<h4>ステップ5.7 カスタム基板<a class="headerlink" href="#step-5-7-custom-circuit-board" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>ディスプレイケーブルをカスタム回路基板に差し込む。</p></li>
+</ul>
+<img alt="../_images/88.jpg" class="align-center" src="../_images/88.jpg" />
+<img alt="../_images/89.jpg" class="align-center" src="../_images/89.jpg" />
+<ul class="simple">
+<li><p>12本のサーボケーブルを差し込む。写真ではJ1,J2,J3.....J12.</p></li>
+</ul>
+<img alt="../_images/90.jpg" class="align-center" src="../_images/90.jpg" />
+<ul class="simple">
+<li><p>4本のM2x5mmネジと4本の短い支柱を使用する。</p></li>
+</ul>
+<img alt="../_images/63.jpg" class="align-center" src="../_images/63.jpg" />
+<img alt="../_images/64.jpg" class="align-center" src="../_images/64.jpg" />
+<ul class="simple">
+<li><p>カーボンファイバー・ボードの上に置く</p></li>
+</ul>
+<img alt="../_images/91.jpg" class="align-center" src="../_images/91.jpg" />
+<ul class="simple">
+<li><p>バッテリーケーブルを差し込む。このコネクターは腰の部分と干渉する可能性があるので、基板の真ん中にある穴からスライドさせる必要がある。</p></li>
+</ul>
+<img alt="../_images/92.jpg" class="align-center" src="../_images/92.jpg" />
+<ul class="simple">
+<li><p>M2x5mmのネジを8本使用する。プレートの向きは、大きな開口部が正面に来るようにする。</p></li>
+</ul>
+<img alt="../_images/66.jpg" class="align-center" src="../_images/66.jpg" />
+<ul class="simple">
+<li><p>カスタム回路基板をボディに近づける。基板が浮いてしまうかもしれないが、4本の長い支柱を使って固定することができる。</p></li>
+</ul>
+<img alt="../_images/93.jpg" class="align-center" src="../_images/93.jpg" />
+<img alt="../_images/94.jpg" class="align-center" src="../_images/94.jpg" />
+<img alt="../_images/95.jpg" class="align-center" src="../_images/95.jpg" />
+<p>1 号サーボのケーブルに無理がかからないように注意してください。</p>
+<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
+</section>
+<section id="step-5-8-fan">
+<h4>ステップ5.8<a class="headerlink" href="#step-5-8-fan" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>ファンを取り付ける。</p></li>
+</ul>
+<img alt="../_images/157.jpg" class="align-center" src="../_images/157.jpg" />
+<img alt="../_images/158.jpg" class="align-center" src="../_images/158.jpg" />
+</section>
+<section id="step-5-9-raspberry-pi-4">
+<h4>Step 5.9 Raspberry Pi<a class="headerlink" href="#step-5-9-raspberry-pi-4" title="Permalink to this headline">4</a></h4>
+<img alt="../_images/96.jpg" class="align-center" src="../_images/96.jpg" />
+<img alt="../_images/97.jpg" class="align-center" src="../_images/97.jpg" />
+</section>
+</section>
+<section id="cover-assembly">
+<h3>6.カバーアセンブリ<a class="headerlink" href="#cover-assembly" title="Permalink to this headline"></a></h3>
+<p>以下のビデオクリップをご覧ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/7s-ceq3U8jM?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><section id="step-6-1-side-panels">
+<h4>ステップ6.1 サイドパネル<a class="headerlink" href="#step-6-1-side-panels" title="Permalink to this headline"></a></h4>
+<img alt="../_images/111.jpg" class="align-center" src="../_images/111.jpg" />
+<img alt="../_images/112.jpg" class="align-center" src="../_images/112.jpg" />
+</section>
+<section id="step-6-2-shin-guards">
+<h4>ステップ6.2 シンガード<a class="headerlink" href="#step-6-2-shin-guards" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>M2x10mmの皿ネジを4本使用する。</p></li>
+</ul>
+<img alt="../_images/113.jpg" class="align-center" src="../_images/113.jpg" />
+<img alt="../_images/114.jpg" class="align-center" src="../_images/114.jpg" />
+</section>
+<section id="step-6-3-shoulders">
+<h4>ステップ6.3<a class="headerlink" href="#step-6-3-shoulders" title="Permalink to this headline">肩</a></h4>
+<ul class="simple">
+<li><p>まずネジだけを差し込み、次にショルダー部を隙間に差し込みます。ショルダー部の穴に2mmの六角ドライバーを差し込み、ネジを締めます。</p></li>
+</ul>
+<img alt="../_images/115.jpg" class="align-center" src="../_images/115.jpg" />
+<img alt="../_images/116.jpg" class="align-center" src="../_images/116.jpg" />
+<img alt="../_images/117.jpg" class="align-center" src="../_images/117.jpg" />
+<img alt="../_images/118.jpg" class="align-center" src="../_images/118.jpg" />
+</section>
+<section id="step-6-4-top-cover">
+<h4>ステップ6.4 トップカバー<a class="headerlink" href="#step-6-4-top-cover" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>M2x10mmのネジを4本使用する。3Dプリンターで作ったパーツなので、穴が小さくてネジが入らない場合は、付属の2mm六角ドライバーで回して穴を大きくすることができる。</p></li>
+</ul>
+<img alt="../_images/119.jpg" class="align-center" src="../_images/119.jpg" />
+<img alt="../_images/120.jpg" class="align-center" src="../_images/120.jpg" />
+<img alt="../_images/121.jpg" class="align-center" src="../_images/121.jpg" />
+</section>
+<section id="step-6-5-shoes">
+<h4>ステップ6.5<a class="headerlink" href="#step-6-5-shoes" title="Permalink to this headline">靴</a></h4>
+<ul class="simple">
+<li><p>4つのシューズを履く。</p></li>
+</ul>
+<img alt="../_images/122.jpg" class="align-center" src="../_images/122.jpg" />
+<img alt="../_images/123.jpg" class="align-center" src="../_images/123.jpg" />
+</section>
+<section id="step-6-6-completion">
+<h4>ステップ6.6 完成<a class="headerlink" href="#step-6-6-completion" title="Permalink to this headline">！</a></h4>
+<img alt="../_images/124.jpg" class="align-center" src="../_images/124.jpg" />
+<img alt="../_images/125.jpg" class="align-center" src="../_images/125.jpg" />
+</section>
+</section>
+<section id="add-on-assembly">
+<h3>7.アドオンアッセンブリー<a class="headerlink" href="#add-on-assembly" title="Permalink to this headline"></a></h3>
+<section id="step-7-1-lidar">
+<h4>ステップ7.1<a class="headerlink" href="#step-7-1-lidar" title="Permalink to this headline">ライダー</a></h4>
+<p>ライダーをご注文の場合、ライダーホルダーは一緒に発送されます。</p>
+<img alt="../_images/126.jpg" class="align-center" src="../_images/126.jpg" />
+<img alt="../_images/127.jpg" class="align-center" src="../_images/127.jpg" />
+<img alt="../_images/130.jpg" class="align-center" src="../_images/130.jpg" />
+</section>
+<section id="step-7-2-camera">
+<h4>ステップ7.2<a class="headerlink" href="#step-7-2-camera" title="Permalink to this headline">カメラ</a></h4>
+<p>カメラをご注文の場合、カメラホルダーはキットに含まれていませんが、下のstlファイルから3Dプリントすることができます。</p>
+<p><a class="reference external" href="https://drive.google.com/drive/folders/1lRADDbAt7mSBJE4j8HCji1WbWcpneUED">https://drive.google.com/drive/folders/1lRADDbAt7mSBJE4j8HCji1WbWcpneUED</a></p>
+<img alt="../_images/camera-1.jpg" class="align-center" src="../_images/camera-1.jpg" />
+<img alt="../_images/camera-2.jpg" class="align-center" src="../_images/camera-2.jpg" />
+<img alt="../_images/camera-3.jpg" class="align-center" src="../_images/camera-3.jpg" />
+</section>
+<section id="step-7-3-completion">
+<h4>ステップ7.3 完成<a class="headerlink" href="#step-7-3-completion" title="Permalink to this headline">！</a></h4>
+<img alt="../_images/OAK-Lidar.FrontView.jpg" class="align-center" src="../_images/OAK-Lidar.FrontView.jpg" />
+<img alt="../_images/OAK-Lidar.SideView.jpg" class="align-center" src="../_images/OAK-Lidar.SideView.jpg" />
+<img alt="../_images/OAK-Lidar.TopView.jpg" class="align-center" src="../_images/OAK-Lidar.TopView.jpg" />
+<div style="page-break-before: always;"></div></section>
+</section>
+</section>
+<section id="assemble-mini-pupper-2">
+<h2><a class="toc-backref" href="#id55">Mini Pupperの組み立て</a><a class="headerlink" href="#assemble-mini-pupper-2" title="Permalink to this headline">2</a></h2>
+<p>これはキット一式のビデオクリップです。詳細な手順については、以下のセクションを参照してください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZfJUBo4a09A?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><p>Mini Pupper2 Fusion 360 CADモデル<a class="reference external" href="https://a360.co/485n8mP">https://a360.co/485n8mP もご参照ください。</a></p>
+<iframe src="https://a360.co/485n8mP?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe><section id="id4">
+<h3>1.ビルド済みのイメージを<a class="headerlink" href="#id4" title="Permalink to this headline">microSDに</a>書き込む</h3>
+<section id="id5">
+<h4><a class="headerlink" href="#id5" title="Permalink to this headline">ツール</a></h4>
+<p>キットに含まれる工具に加えて、組み立てには以下のものが必要です。</p>
+<ul class="simple">
+<li><p>USBキーボード</p></li>
+<li><p>USBマウス</p></li>
+<li><p>PC</p></li>
+<li><p>microSDカードリーダー</p></li>
+<li><p>HDMIディスプレイ</p></li>
+<li><p>マイクロHDMIケーブル</p></li>
+<li><p>USB充電器</p></li>
+</ul>
+</section>
+<section id="id6">
+<h4>ステップ1.1 充電<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>バッテリーはUSB経由で充電される（USBソケットは写真を参照）。</p></li>
+</ul>
+<p>LEDライト：緑は十分な電力があることを意味し、赤は充電が必要であることを意味します。</p>
+<p>5V/2Aのアダプターを使用すると、バッテリーICが1Aに変更されます。80%充電でランプが緑色になるまで約1時間、100%充電までさらに約1時間かかりますが、ランプが緑色になれば使用可能です。</p>
+<img alt="../_images/100.jpg" class="align-center" src="../_images/100.jpg" />
+</section>
+<section id="id7">
+<h4>ステップ1.2<a class="headerlink" href="#id7" title="Permalink to this headline">画像の</a>ダウンロード</h4>
+<ul class="simple">
+<li><p>ビルド済みイメージファイルは<a class="reference external" href="https://drive.google.com/drive/folders/1c0ShF-R8yxiMnCgMnSOctBpkW707b1q6?usp=sharing">Mini Pupperビルド済みイメージから</a>ダウンロードできます。</p></li>
+</ul>
+<p>"xxx_stanford**.img "はUbuntu 22.04用のイメージです。</p>
+<ul class="simple">
+<li><p>下の写真はカスタム・キャリーボード。</p></li>
+</ul>
+<img alt="../_images/147.v2.jpg" class="align-center" src="../_images/147.v2.jpg" />
+</section>
+<section id="step-1-3-write-the-image-into-a-microsd-card">
+<h4>ステップ1.3 microSDカードに画像を書き込む<a class="headerlink" href="#step-1-3-write-the-image-into-a-microsd-card" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>microSDカードをPCのSDカードリーダーに挿入し、イメージを書き込みます。イメージ作成ツールのbalenaEtcherかWin32DiskImagerが簡単で確実なのでおすすめです。完了までに時間がかかる場合があります。</p></li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h3>2.ネジの位置<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>写真はネジの位置を簡単に示している。</p></li>
+</ul>
+<img alt="../_images/MPv2.screws1.jpg" class="align-center" src="../_images/MPv2.screws1.jpg" />
+<img alt="../_images/MPv2.screws2.jpg" class="align-center" src="../_images/MPv2.screws2.jpg" />
+<img alt="../_images/MPv2.screws3.jpg" class="align-center" src="../_images/MPv2.screws3.jpg" />
+</section>
+<section id="id9">
+<h3>3.脚組み立て<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
+<p>以下のビデオクリップをご覧ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ut7UnS3CTZs?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><section id="id10">
+<h4>使用ボルト<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>M2x5mm 2x4=8 ①+②，⑤+⑥</p></li>
+<li><p>M2x8mm 3x4=12 ②+③④+⑦③+④</p></li>
+<li><p>M2x12mm 1x4=4 ⑤+⑦ ⑤+7</p></li>
+<li><p>M2x14mm 1x4=4 ③+⑤ ③+⑤ ③+⑤</p></li>
+</ul>
+</section>
+<section id="id11">
+<h4>ステップ3.1 シングルレッグ<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>本の脚を組み立てる。右側の前面と背面は同じで、左側の前面と背面も同じである。右側の組み立て方を説明する。</p></li>
+<li><p>ビデオによる説明は、リンク<a class="reference external" href="https://youtu.be/Ut7UnS3CTZs">https://youtu.be/Ut7UnS3CTZs</a>をご参照ください。</p></li>
+<li><p>各パーツには以下のように番号を振って説明している。</p></li>
+</ul>
+<img alt="../_images/1.jpg" class="align-center" src="../_images/1.jpg" />
+<p>と②を組み立てる</p>
+<img alt="../_images/2.v2.jpg" class="align-center" src="../_images/2.v2.jpg" />
+<img alt="../_images/6.v2.1.jpg" class="align-center" src="../_images/6.v2.1.jpg" />
+<ul class="simple">
+<li><p>の中のベアリングの両側は異なっている。</p></li>
+</ul>
+<img alt="../_images/3.jpg" class="align-center" src="../_images/3.jpg" />
+<img alt="../_images/6.v2.jpg" class="align-center" src="../_images/6.v2.jpg" />
+<p>と③を組み立てる</p>
+<ul class="simple">
+<li><p>M2×8mmのネジとM2のロックナットを使用する。ネジを③の下から上へ差し込み、②を貫通させてナットで締める。このとき③の向きに注意する。真ん中の穴の位置をよく見てください。</p></li>
+</ul>
+<img alt="../_images/7.v2.jpg" class="align-center" src="../_images/7.v2.jpg" />
+<img alt="../_images/8.v2.jpg" class="align-center" src="../_images/8.v2.jpg" />
+<p>の長さの調整</p>
+<ul class="simple">
+<li><p>の長さは必ず⑤の長さと合わせること。長さを調整する際は、長めのネジを2本使うと合わせやすい。長さの調整が終わったら、すべて分解する。</p></li>
+</ul>
+<img alt="../_images/10.jpg" class="align-center" src="../_images/10.jpg" />
+<img alt="../_images/11.jpg" class="align-center" src="../_images/11.jpg" />
+<ul class="simple">
+<li><p>ねじりにくい場合は、ドライバーを2本使って補助するとよい。</p></li>
+</ul>
+<img alt="../_images/11_1.jpg" class="align-center" src="../_images/11_1.jpg" />
+<p>と⑥を組み立てる。</p>
+<ul class="simple">
+<li><p>M2×5mmのネジを1本使用する。まず⑤にビスを差し込み、⑥の穴に差し込んで締めます。このとき、⑥の大きな穴が表面側を向くようにしてください。</p></li>
+</ul>
+<img alt="../_images/12.jpg" class="align-center" src="../_images/12.jpg" />
+<img alt="../_images/13.jpg" class="align-center" src="../_images/13.jpg" />
+<img alt="../_images/14.jpg" class="align-center" src="../_images/14.jpg" />
+<p>と⑦を組み立てる。</p>
+<ul class="simple">
+<li><p>M2x12mmのネジ、M2のロックナット、2組のボールベアリングを使用する。それぞれのボールベアリングは3つの部品で構成されており、溝がある面を内側に向けた上部と下部がある。1組のボールベアリングにネジを挿入する。次にネジを⑦の穴に差し込む。このとき、⑦の反った面を見て、向きが合っているか確認する。もう一組のボールベアリングをねじ込みます。最後に⑤にネジを入れ、ナットで締めます。</p></li>
+</ul>
+<img alt="../_images/15.jpg" class="align-center" src="../_images/15.jpg" />
+<img alt="../_images/18.jpg" class="align-center" src="../_images/18.jpg" />
+<img alt="../_images/19.jpg" class="align-center" src="../_images/19.jpg" />
+<img alt="../_images/21.jpg" class="align-center" src="../_images/21.jpg" />
+<img alt="../_images/20.jpg" class="align-center" src="../_images/20.jpg" />
+<p>と⑦を組み立てる</p>
+<ul class="simple">
+<li><p>M2×8mmのネジとM2のナットを使う。ネジを⑦に差し込み、④を通し、ナットで締める。の表裏の向きはどちらでもよい。</p></li>
+</ul>
+<p>左右の脚</p>
+<img alt="../_images/22.jpg" class="align-center" src="../_images/22.jpg" />
+<img alt="../_images/23.jpg" class="align-center" src="../_images/23.jpg" />
+<img alt="../_images/24.jpg" class="align-center" src="../_images/24.jpg" />
+<p>と④を組み立てる</p>
+<ul class="simple">
+<li><p>M2×8mmのネジとM2のナットを使う。ネジを③に差し込み、④を通し、ナットで締める。</p></li>
+</ul>
+<p>左右の脚</p>
+<img alt="../_images/25.v2.jpg" class="align-center" src="../_images/25.v2.jpg" />
+<img alt="../_images/26.jpg" class="align-center" src="../_images/26.jpg" />
+<p>と⑤を組み立てる</p>
+<ul class="simple">
+<li><p>M2×14mmのネジとボールベアリングを2セット使用する。ベアリング、③、ベアリング、⑤の順にネジを通します。ネジは固定しませんが、次の工程でサーボを取り付けるときにネジを締めます。</p></li>
+</ul>
+<img alt="../_images/27.v2.jpg" class="align-center" src="../_images/27.v2.jpg" />
+<img alt="../_images/29.jpg" class="align-center" src="../_images/29.jpg" />
+<img alt="../_images/30.jpg" class="align-center" src="../_images/30.jpg" />
+<p>右足の完成</p>
+<ul class="simple">
+<li><p>これで右側に片足ができた。いろいろな角度から見てください。左足は右足と左右対称になるようにします。</p></li>
+</ul>
+<img alt="../_images/31.v2.jpg" class="align-center" src="../_images/31.v2.jpg" />
+<img alt="../_images/32.jpg" class="align-center" src="../_images/32.jpg" />
+<p>反対側</p>
+<img alt="../_images/34.v2.jpg" class="align-center" src="../_images/34.v2.jpg" />
+</section>
+<section id="id12">
+<h4>ステップ3.2 4脚<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h4>
+<img alt="../_images/36.v2.jpg" class="align-center" src="../_images/36.v2.jpg" />
+</section>
+<section id="id13">
+<h4>ステップ3.3 ロックタイト<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h4>
+<p>Mini Pupperをしばらく走らせると、ネジやナットが緩んできます。どのように動作するのかを理解するのに役立ちます。</p>
+<p>初心者の方にいきなりロックタイトを使用することはお勧めしません。</p>
+<p>ロックタイトはナットの緩みを防止するが、緩みに気づいたときだけ締めればよいので、必須ではない。</p>
+<img alt="../_images/37.jpg" class="align-center" src="../_images/37.jpg" />
+<img alt="../_images/45.jpg" class="align-center" src="../_images/45.jpg" />
+<ul class="simple">
+<li><p>下の写真のように、接着剤で固定されているネジもある。</p></li>
+</ul>
+<img alt="../_images/37_2.jpg" class="align-center" src="../_images/37_2.jpg" />
+</section>
+</section>
+<section id="display-and-frame-of-face">
+<h3>4.顔の表示とフレーム<a class="headerlink" href="#display-and-frame-of-face" title="Permalink to this headline"></a></h3>
+<p>ディスプレイの保護シートを剥がす。ディスプレイの端にある細いフレキシブルケーブルを折りたたむ。基板とディスプレイを本体に取り付ける。</p>
+<img alt="../_images/74.jpg" class="align-center" src="../_images/74.jpg" />
+<img alt="../_images/79.v2.1.jpg" class="align-center" src="../_images/79.v2.1.jpg" />
+<img alt="../_images/79.v2.2.jpg" class="align-center" src="../_images/79.v2.2.jpg" />
+<img alt="../_images/79.v2.3.jpg" class="align-center" src="../_images/79.v2.3.jpg" />
+<ul class="simple">
+<li><p>ディスプレイを取り付ける際、棒を使ってフレキシブルFPCケーブルを軽く押し、できるだけ奥に入るようにします。このFPCケーブルは180度曲げないでください。</p></li>
+</ul>
+<img alt="../_images/79.v2.4.jpg" class="align-center" src="../_images/79.v2.4.jpg" />
+<img alt="../_images/79.v2.5.jpg" class="align-center" src="../_images/79.v2.5.jpg" />
+</section>
+<section id="body-frame-and-hips-assembly">
+<h3>5.ボディ・フレームとヒップ・<a class="headerlink" href="#body-frame-and-hips-assembly" title="Permalink to this headline">アセンブリ</a></h3>
+<ul class="simple">
+<li><p>サーボIDの設定方法は、一番上の動画を参照してください。</p></li>
+<li><p>各サーボの位置は下図を参照してください。</p></li>
+</ul>
+<img alt="../_images/52.v2.jpg" class="align-center" src="../_images/52.v2.jpg" />
+<section id="step-5-1-body-center-parts">
+<h4>ステップ5.1 ボディセンター<a class="headerlink" href="#step-5-1-body-center-parts" title="Permalink to this headline">パーツ</a></h4>
+<p>1、4、7、10番サーボをボディセンターパーツに接続する。</p>
+<ul class="simple">
+<li><p>この作業では、ケーブルにマスキングテープを貼り、サーボの数を書いておくと後で楽だ。</p></li>
+</ul>
+<img alt="../_images/49.v2.1.jpg" class="align-center" src="../_images/49.v2.1.jpg" />
+<ul class="simple">
+<li><p>センターパートの方向に注意。</p></li>
+</ul>
+<img alt="../_images/49.v2.2.jpg" class="align-center" src="../_images/49.v2.2.jpg" />
+<img alt="../_images/49.v2.3.jpg" class="align-center" src="../_images/49.v2.3.jpg" />
+<p>センターパーツをボトムカーボンファイバーに接続する。</p>
+<ul class="simple">
+<li><p>カーボンファイバーのフロントとリアの向きに注意。</p></li>
+</ul>
+<img alt="../_images/49.v2.4.jpg" class="align-center" src="../_images/49.v2.4.jpg" />
+<img alt="../_images/49.v2.5.jpg" class="align-center" src="../_images/49.v2.5.jpg" />
+</section>
+<section id="step-5-2-hip-parts">
+<h4>ステップ5.2 ヒップ・パーツ<a class="headerlink" href="#step-5-2-hip-parts" title="Permalink to this headline"></a></h4>
+<p>サーボの位置を参考に、4つのヒップパーツを組み立てる。</p>
+<img alt="../_images/49.v2.6.jpg" class="align-center" src="../_images/49.v2.6.jpg" />
+<img alt="../_images/49.v2.7.jpg" class="align-center" src="../_images/49.v2.7.jpg" />
+<p>No.1、4、7、10サーボが正しい位置にあることを確認する。</p>
+<img alt="../_images/49.v2.8.jpg" class="align-center" src="../_images/49.v2.8.jpg" />
+<p>カスタムケーブルを使ってバッテリーをトップPCBボードに接続し、バッテリーボタンを3秒以上クリックして起動させる。</p>
+<img alt="../_images/49.v2.9.jpg" class="align-center" src="../_images/49.v2.9.jpg" />
+<p>サーボコネクタの向きに注意して、サーボをトップPCBボードに接続する。</p>
+<img alt="../_images/49.v2.10.jpg" class="align-center" src="../_images/49.v2.10.jpg" />
+<img alt="../_images/49.v2.11.jpg" class="align-center" src="../_images/49.v2.11.jpg" />
+<p>股関節の4つのパーツを体につなげる、注意してください。</p>
+<ul class="simple">
+<li><p>今はバッテリーの電源を切らないでください。</p></li>
+<li><p>すべてのサーボの位置が正しいことを確認する。</p></li>
+</ul>
+<img alt="../_images/49.v2.12.jpg" class="align-center" src="../_images/49.v2.12.jpg" />
+</section>
+<section id="step-5-3-front-and-back-body-parts">
+<h4>ステップ5.3 前身頃と後身頃<a class="headerlink" href="#step-5-3-front-and-back-body-parts" title="Permalink to this headline"></a></h4>
+<p>バッテリーの電源を切り、フロントとバックのボディパーツを接続する。</p>
+<img alt="../_images/49.v2.13.jpg" class="align-center" src="../_images/49.v2.13.jpg" />
+<img alt="../_images/49.v2.14.jpg" class="align-center" src="../_images/49.v2.14.jpg" />
+<p>指示に注意してください。</p>
+<img alt="../_images/49.v2.16.jpg" class="align-center" src="../_images/49.v2.16.jpg" />
+<p>バッテリーに電源を入れ、腰のパーツが正しい位置にあることを確認し、残りのサーボをすべてPCBボードに接続したら、バッテリーの電源を切って先に進む。</p>
+<img alt="../_images/49.v2.19.jpg" class="align-center" src="../_images/49.v2.19.jpg" />
+<p>LCDケーブルをPCBボードに接続し、サーボケーブルを明確にする。</p>
+<img alt="../_images/49.v2.20.jpg" class="align-center" src="../_images/49.v2.20.jpg" />
+<img alt="../_images/49.v2.21.jpg" class="align-center" src="../_images/49.v2.21.jpg" />
+<p>天板と底板を固定する。</p>
+<img alt="../_images/49.v2.22.jpg" class="align-center" src="../_images/49.v2.22.jpg" />
+<img alt="../_images/49.v2.23.jpg" class="align-center" src="../_images/49.v2.23.jpg" />
+<img alt="../_images/49.v2.24.jpg" class="align-center" src="../_images/49.v2.24.jpg" />
+</section>
+<section id="step-5-4-assemble-four-legs-to-the-body">
+<h4>ステップ5.4 4本の脚を本体に組み付ける<a class="headerlink" href="#step-5-4-assemble-four-legs-to-the-body" title="Permalink to this headline"></a></h4>
+<img alt="../_images/49.v2.25.jpg" class="align-center" src="../_images/49.v2.25.jpg" />
+<p>理論的にベストな角度に注意してください。 理論的にベストな角度はできるだけ満たした方がいいです。 でも、後でソフトウェアを使って角度を調整するので心配しないでください。</p>
+<img alt="../_images/49.v2.26.jpg" class="align-center" src="../_images/49.v2.26.jpg" />
+<img alt="../_images/49.v2.27.jpg" class="align-center" src="../_images/49.v2.27.jpg" />
+</section>
+<section id="step-5-5-assemble-the-battery-to-the-body">
+<h4>ステップ5.5 バッテリーを本体に組み付ける<a class="headerlink" href="#step-5-5-assemble-the-battery-to-the-body" title="Permalink to this headline"></a></h4>
+<img alt="../_images/49.v2.28.jpg" class="align-center" src="../_images/49.v2.28.jpg" />
+<p>バッテリーを後方にスライドさせ、固定します。</p>
+<img alt="../_images/49.v2.29.jpg" class="align-center" src="../_images/49.v2.29.jpg" />
+<img alt="../_images/85.jpg" class="align-center" src="../_images/85.jpg" />
+<img alt="../_images/84.jpg" class="align-center" src="../_images/84.jpg" />
+</section>
+<section id="step-5-6-assemble-the-speaker">
+<h4>ステップ5.6 スピーカーの組み立て<a class="headerlink" href="#step-5-6-assemble-the-speaker" title="Permalink to this headline"></a></h4>
+<img alt="../_images/MP2.Speak.1.jpg" class="align-center" src="../_images/MP2.Speak.1.jpg" />
+<img alt="../_images/MP2.Speak.2.jpg" class="align-center" src="../_images/MP2.Speak.2.jpg" />
+</section>
+</section>
+<section id="id14">
+<h3>6.カバーアセンブリ<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h3>
+<p>以下のビデオクリップをご覧ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Nw8dl4CGt9A?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><section id="id15">
+<h4>ステップ6.1 サイドパネル<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h4>
+<img alt="../_images/111.v2.jpg" class="align-center" src="../_images/111.v2.jpg" />
+<img alt="../_images/112.v2.jpg" class="align-center" src="../_images/112.v2.jpg" />
+</section>
+<section id="id16">
+<h4>ステップ6.2 シンガード<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>M2x10mmの皿ネジを4本使用する。</p></li>
+</ul>
+<img alt="../_images/113.v2.jpg" class="align-center" src="../_images/113.v2.jpg" />
+<img alt="../_images/114.v2.jpg" class="align-center" src="../_images/114.v2.jpg" />
+</section>
+<section id="id17">
+<h4>ステップ6.3<a class="headerlink" href="#id17" title="Permalink to this headline">肩</a></h4>
+<ul class="simple">
+<li><p>まずネジだけを差し込み、次にショルダー部を隙間に差し込みます。ショルダー部の穴に2mmの六角ドライバーを差し込み、ネジを締めます。</p></li>
+</ul>
+<img alt="../_images/114.v2.2.jpg" class="align-center" src="../_images/114.v2.2.jpg" />
+<img alt="../_images/117.v2.jpg" class="align-center" src="../_images/117.v2.jpg" />
+<img alt="../_images/117.v2.2.jpg" class="align-center" src="../_images/117.v2.2.jpg" />
+<img alt="../_images/122.v2.jpg" class="align-center" src="../_images/122.v2.jpg" />
+</section>
+<section id="step-6-4-shoes">
+<h4>ステップ6.4<a class="headerlink" href="#step-6-4-shoes" title="Permalink to this headline">靴</a></h4>
+<ul class="simple">
+<li><p>4つのシューズを履く。</p></li>
+</ul>
+<img alt="../_images/122.v2.jpg" class="align-center" src="../_images/122.v2.jpg" />
+<img alt="../_images/123.v2.jpg" class="align-center" src="../_images/123.v2.jpg" />
+</section>
+<section id="complete">
+<h4>コンプリート<a class="headerlink" href="#complete" title="Permalink to this headline">！</a></h4>
+</section>
+</section>
+<section id="id18">
+<h3>7.<a class="headerlink" href="#id18" title="Permalink to this headline">アドオンアセンブリ</a></h3>
+<section id="id19">
+<h4>ステップ7.1<a class="headerlink" href="#id19" title="Permalink to this headline">ライダー</a></h4>
+<p>ライダーをご注文の場合、3Dプリントされたライダーホルダーとカスタムケーブルが一緒に発送されます。<a class="reference external" href="https://drive.google.com/drive/folders/1G8TsAhhomSA2-VkI1Wiqmuhu92EsJNb2">Mini Pupper2のSTLファイルを</a>使用して、ご自身でホルダーをプリントすることもできます。</p>
+<img alt="../_images/MP2.Lidar.1.jpg" class="align-center" src="../_images/MP2.Lidar.1.jpg" />
+<p>3Dプリントしたパーツに3つのホルダーを接続する。</p>
+<img alt="../_images/MP2.Lidar.2.jpg" class="align-center" src="../_images/MP2.Lidar.2.jpg" />
+<p>カスタムケーブルをPCBボード上のLidarコネクタに接続する。</p>
+<img alt="../_images/MP2.Lidar.3.jpg" class="align-center" src="../_images/MP2.Lidar.3.jpg" />
+<p>3Dプリントした部品をPCBボードに固定する。</p>
+<img alt="../_images/MP2.Lidar.4.jpg" class="align-center" src="../_images/MP2.Lidar.4.jpg" />
+<p>カスタムケーブルをライダーモジュールに接続し、セルフタッピングネジで固定する。</p>
+<img alt="../_images/MP2.Lidar.5.jpg" class="align-center" src="../_images/MP2.Lidar.5.jpg" />
+</section>
+<section id="id20">
+<h4>ステップ7.2<a class="headerlink" href="#id20" title="Permalink to this headline">カメラ</a></h4>
+<p>Mini Pupper 2はシングルPiカメラまたはOpenCV OAK-D-Liteカメラモジュールもサポートしています。<a class="reference external" href="https://drive.google.com/drive/folders/1G8TsAhhomSA2-VkI1Wiqmuhu92EsJNb2">Mini Pupper2のSTLファイルを</a>使用して、自分でホルダーを印刷することもできます。</p>
+<img alt="../_images/MP2.LidarCamera.1.jpg" class="align-center" src="../_images/MP2.LidarCamera.1.jpg" />
+<img alt="../_images/MP2.LidarCamera.2.jpg" class="align-center" src="../_images/MP2.LidarCamera.2.jpg" />
+<img alt="../_images/MP2.LidarCamera.3.jpg" class="align-center" src="../_images/MP2.LidarCamera.3.jpg" />
+<div style="page-break-before: always;"></div></section>
+</section>
+</section>
+<section id="assemble-mini-pupper-2-pro">
+<h2><a class="toc-backref" href="#id56">Mini Pupper2を組み立てる</a><a class="headerlink" href="#assemble-mini-pupper-2-pro" title="Permalink to this headline"></a></h2>
+<p>一般的なDIYプロセス</p>
+<ul class="simple">
+<li><p>アセンブル→キャリブレーション→ラン</p></li>
+</ul>
+<p>注意</p>
+<ul class="simple">
+<li><p>MCU（ESP32とAT32）ソフトウェアは両方ともプリインストールされているので、MCUイメージをフラッシュする必要はありません。</p></li>
+<li><p>サーボ番号はハードウェアの設計により固定されているため、Mini Pupper 2のように各サーボ番号を設定する必要はありません。</p></li>
+</ul>
+<p>Mini Pupper2 Fusion 360 CADモデルをご参照ください<a class="reference external" href="https://a360.co/485n8mP">： https://a360.co/485n8mP</a></p>
+<iframe src="https://a360.co/485n8mP?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe><section id="id22">
+<h3>1.ビルド済みのイメージを<a class="headerlink" href="#id22" title="Permalink to this headline">microSDに</a>書き込む</h3>
+<section id="id23">
+<h4><a class="headerlink" href="#id23" title="Permalink to this headline">ツール</a></h4>
+<p>キットに含まれる工具に加えて、組み立てには以下のものが必要です。</p>
+<ul class="simple">
+<li><p>USBキーボード</p></li>
+<li><p>USBマウス</p></li>
+<li><p>PC</p></li>
+<li><p>microSDカードリーダー</p></li>
+<li><p>HDMIディスプレイ</p></li>
+<li><p>マイクロHDMIケーブル</p></li>
+<li><p>USB充電器</p></li>
+</ul>
+</section>
+<section id="id24">
+<h4>ステップ1.1 充電<a class="headerlink" href="#id24" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>バッテリーはUSB経由で充電される（USBソケットは写真を参照）。</p></li>
+</ul>
+<p>LEDライト：緑は十分な電力があることを意味し、赤は充電が必要であることを意味します。</p>
+<p>5V/2Aのアダプターを使用すると、バッテリーICが1Aに変更されます。80%充電でランプが緑色になるまで約1時間、100%充電までさらに約1時間かかりますが、ランプが緑色になれば使用可能です。</p>
+<img alt="../_images/100.jpg" class="align-center" src="../_images/100.jpg" />
+</section>
+<section id="id25">
+<h4>ステップ1.2<a class="headerlink" href="#id25" title="Permalink to this headline">画像の</a>ダウンロード</h4>
+<ul class="simple">
+<li><p>ビルド済みイメージファイルは<a class="reference external" href="https://drive.google.com/drive/folders/1c0ShF-R8yxiMnCgMnSOctBpkW707b1q6?usp=sharing">Mini Pupperビルド済みイメージから</a>ダウンロードできます。</p></li>
+</ul>
+<p>"v2Pro_stanford**.img "はUbuntu 22.04用のイメージです。</p>
+<ul class="simple">
+<li><p>下の写真はカスタム・キャリーボード。</p></li>
+</ul>
+<img alt="../_images/147.v2.jpg" class="align-center" src="../_images/147.v2.jpg" />
+</section>
+<section id="id27">
+<h4>ステップ1.3 microSDカードに画像を書き込む<a class="headerlink" href="#id27" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>microSDカードをPCのSDカードリーダーに挿入し、イメージを書き込みます。イメージ作成ツールのbalenaEtcherかWin32DiskImagerが簡単で確実なのでおすすめです。完了までに時間がかかる場合があります。</p></li>
+</ul>
+</section>
+</section>
+<section id="id28">
+<h3>2.ネジの位置<a class="headerlink" href="#id28" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>写真はネジの位置を簡単に示している。</p></li>
+</ul>
+<img alt="../_images/MPv2.screws1.jpg" class="align-center" src="../_images/MPv2.screws1.jpg" />
+<img alt="../_images/MPv2.screws2.jpg" class="align-center" src="../_images/MPv2.screws2.jpg" />
+<img alt="../_images/MPv2.screws3.jpg" class="align-center" src="../_images/MPv2.screws3.jpg" />
+</section>
+<section id="id29">
+<h3>3.脚組み立て<a class="headerlink" href="#id29" title="Permalink to this headline"></a></h3>
+<p>以下のビデオクリップをご覧ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ut7UnS3CTZs?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><section id="id30">
+<h4>使用ボルト<a class="headerlink" href="#id30" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>M2x5mm 2x4=8 ①+②，⑤+⑥</p></li>
+<li><p>M2x8mm 3x4=12 ②+③④+⑦③+④</p></li>
+<li><p>M2x12mm 1x4=4 ⑤+⑦ ⑤+7</p></li>
+<li><p>M2x14mm 1x4=4 ③+⑤ ③+⑤ ③+⑤</p></li>
+</ul>
+</section>
+<section id="id31">
+<h4>ステップ3.1 シングルレッグ<a class="headerlink" href="#id31" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>本の脚を組み立てる。右側の前面と背面は同じで、左側の前面と背面も同じである。右側の組み立て方を説明する。</p></li>
+<li><p>ビデオによる説明は、リンク<a class="reference external" href="https://youtu.be/Ut7UnS3CTZs">https://youtu.be/Ut7UnS3CTZs</a>をご参照ください。</p></li>
+<li><p>各パーツには以下のように番号を振って説明している。</p></li>
+</ul>
+<img alt="../_images/1.jpg" class="align-center" src="../_images/1.jpg" />
+<p>と②を組み立てる</p>
+<img alt="../_images/2.v2.jpg" class="align-center" src="../_images/2.v2.jpg" />
+<img alt="../_images/6.v2.1.jpg" class="align-center" src="../_images/6.v2.1.jpg" />
+<ul class="simple">
+<li><p>の中のベアリングの両側は異なっている。</p></li>
+</ul>
+<img alt="../_images/3.jpg" class="align-center" src="../_images/3.jpg" />
+<img alt="../_images/6.v2.jpg" class="align-center" src="../_images/6.v2.jpg" />
+<p>と③を組み立てる</p>
+<ul class="simple">
+<li><p>M2×8mmのネジとM2のロックナットを使用する。ネジを③の下から上へ差し込み、②を貫通させてナットで締める。このとき③の向きに注意することが大切です。真ん中の穴の位置をよく見てください。</p></li>
+</ul>
+<img alt="../_images/7.v2.jpg" class="align-center" src="../_images/7.v2.jpg" />
+<img alt="../_images/8.v2.jpg" class="align-center" src="../_images/8.v2.jpg" />
+<p>の長さの調整</p>
+<ul class="simple">
+<li><p>の長さは必ず⑤の長さと合わせること。長さを調整する際は、長めのネジを2本使うと合わせやすい。長さの調整が終わったら、すべて分解する。</p></li>
+</ul>
+<img alt="../_images/10.jpg" class="align-center" src="../_images/10.jpg" />
+<img alt="../_images/11.jpg" class="align-center" src="../_images/11.jpg" />
+<ul class="simple">
+<li><p>ねじりにくい場合は、ドライバーを2本使って補助するとよい。</p></li>
+</ul>
+<img alt="../_images/11_1.jpg" class="align-center" src="../_images/11_1.jpg" />
+<p>と⑥を組み立てる。</p>
+<ul class="simple">
+<li><p>M2×5mmのネジを1本使用する。まず⑤にビスを差し込み、⑥の穴に差し込んで締めます。このとき、⑥の大きな穴が表面側を向くようにしてください。</p></li>
+</ul>
+<img alt="../_images/12.jpg" class="align-center" src="../_images/12.jpg" />
+<img alt="../_images/13.jpg" class="align-center" src="../_images/13.jpg" />
+<img alt="../_images/14.jpg" class="align-center" src="../_images/14.jpg" />
+<p>と⑦を組み立てる。</p>
+<ul class="simple">
+<li><p>M2x12mmのネジ、M2のロックナット、2組のボールベアリングを使用する。それぞれのボールベアリングは3つの部品で構成されており、溝がある面を内側に向けた上部と下部がある。1組のボールベアリングにネジを挿入する。次にネジを⑦の穴に差し込む。このとき、⑦の反った面を見て、向きが合っているか確認する。もう一組のボールベアリングをねじ込みます。最後に⑤にネジを入れ、ナットで締めます。</p></li>
+</ul>
+<img alt="../_images/15.jpg" class="align-center" src="../_images/15.jpg" />
+<img alt="../_images/18.jpg" class="align-center" src="../_images/18.jpg" />
+<img alt="../_images/19.jpg" class="align-center" src="../_images/19.jpg" />
+<img alt="../_images/21.jpg" class="align-center" src="../_images/21.jpg" />
+<img alt="../_images/20.jpg" class="align-center" src="../_images/20.jpg" />
+<p>と⑦を組み立てる</p>
+<ul class="simple">
+<li><p>M2×8mmのネジとM2のナットを使う。ネジを⑦に差し込み、④を通し、ナットで締める。の表裏の向きはどちらでもよい。</p></li>
+</ul>
+<p>左右の脚</p>
+<img alt="../_images/22.jpg" class="align-center" src="../_images/22.jpg" />
+<img alt="../_images/23.jpg" class="align-center" src="../_images/23.jpg" />
+<img alt="../_images/24.jpg" class="align-center" src="../_images/24.jpg" />
+<p>と④を組み立てる</p>
+<ul class="simple">
+<li><p>M2×8mmのネジとM2のナットを使う。ネジを③に差し込み、④を通し、ナットで締める。</p></li>
+</ul>
+<p>左右の脚</p>
+<img alt="../_images/25.v2.jpg" class="align-center" src="../_images/25.v2.jpg" />
+<img alt="../_images/26.jpg" class="align-center" src="../_images/26.jpg" />
+<p>と⑤を組み立てる</p>
+<ul class="simple">
+<li><p>M2×14mmのネジとボールベアリングを2セット使用する。ベアリング、③、ベアリング、⑤の順にネジを通します。ネジは固定しませんが、次の工程でサーボを取り付けるときにネジを締めます。</p></li>
+</ul>
+<img alt="../_images/27.v2.jpg" class="align-center" src="../_images/27.v2.jpg" />
+<img alt="../_images/29.jpg" class="align-center" src="../_images/29.jpg" />
+<img alt="../_images/30.jpg" class="align-center" src="../_images/30.jpg" />
+<p>右足の完成</p>
+<ul class="simple">
+<li><p>これで右側に片足ができた。いろいろな角度から見てください。左足は右足と左右対称でなければなりません。</p></li>
+</ul>
+<img alt="../_images/31.v2.jpg" class="align-center" src="../_images/31.v2.jpg" />
+<img alt="../_images/32.jpg" class="align-center" src="../_images/32.jpg" />
+<p>反対側</p>
+<img alt="../_images/34.v2.jpg" class="align-center" src="../_images/34.v2.jpg" />
+</section>
+<section id="id32">
+<h4>ステップ3.2 4脚<a class="headerlink" href="#id32" title="Permalink to this headline"></a></h4>
+<img alt="../_images/36.v2.jpg" class="align-center" src="../_images/36.v2.jpg" />
+</section>
+<section id="id33">
+<h4>ステップ3.3 ロックタイト<a class="headerlink" href="#id33" title="Permalink to this headline"></a></h4>
+<p>Mini Pupperをしばらく走らせると、ネジやナットが緩んでくるので、必要に応じて締め直してください。どのように動作するのかを理解するのに役立ちます。</p>
+<p>初心者の方にいきなりロックタイトを使用することはお勧めしません。</p>
+<p>ロックタイトはナットの緩みを防止するが、緩みに気づいたときだけ締めればよいので、必須ではない。</p>
+<img alt="../_images/37.jpg" class="align-center" src="../_images/37.jpg" />
+<img alt="../_images/45.jpg" class="align-center" src="../_images/45.jpg" />
+<ul class="simple">
+<li><p>下の写真のように、接着剤で固定されているネジもある。</p></li>
+</ul>
+<img alt="../_images/37_2.jpg" class="align-center" src="../_images/37_2.jpg" />
+</section>
+</section>
+<section id="id34">
+<h3>4.顔の表示とフレーム<a class="headerlink" href="#id34" title="Permalink to this headline"></a></h3>
+<p>ディスプレイの保護シートを剥がす。ディスプレイの端にある細いフレキシブルケーブルを折りたたむ。基板とディスプレイを本体に取り付ける。</p>
+<img alt="../_images/74.2pro.jpg" class="align-center" src="../_images/74.2pro.jpg" />
+<img alt="../_images/79.v2.1.jpg" class="align-center" src="../_images/79.v2.1.jpg" />
+<img alt="../_images/79.v2.2.jpg" class="align-center" src="../_images/79.v2.2.jpg" />
+<img alt="../_images/79.v2.3.jpg" class="align-center" src="../_images/79.v2.3.jpg" />
+<ul class="simple">
+<li><p>ディスプレイを取り付ける際、棒を使ってフレキシブルFPCケーブルを軽く押し、できるだけ奥に入るようにします。このFPCケーブルは180度曲げないでください。</p></li>
+</ul>
+<img alt="../_images/79.v2.4.jpg" class="align-center" src="../_images/79.v2.4.jpg" />
+<img alt="../_images/79.v2.5.jpg" class="align-center" src="../_images/79.v2.5.jpg" />
+</section>
+<section id="id35">
+<h3>5.ボディ・フレームとヒップ・<a class="headerlink" href="#id35" title="Permalink to this headline">アセンブリ</a></h3>
+<ul class="simple">
+<li><p>CM4モジュールをキャリーボードに接続する前に、サーマルパッドの保護フィルムを剥がしてください。</p></li>
+</ul>
+<img alt="../_images/53.v2Pro.jpg" class="align-center" src="../_images/53.v2Pro.jpg" />
+<ul class="simple">
+<li><p>v2ProバージョンではサーボIDを設定する必要はありません。サーボIDはハードウェア設計により固定されています。</p></li>
+<li><p>各サーボの位置は下図を参照してください。</p></li>
+</ul>
+<img alt="../_images/52.v2Pro.jpg" class="align-center" src="../_images/52.v2Pro.jpg" />
+<section id="id36">
+<h4>ステップ5.1 ボディセンター<a class="headerlink" href="#id36" title="Permalink to this headline">パーツ</a></h4>
+<p>1、4、7、10番サーボをボディセンターパーツに接続する。</p>
+<ul class="simple">
+<li><p>この作業では、ケーブルにマスキングテープを貼り、サーボの数を書いておくと後で楽だ。</p></li>
+</ul>
+<img alt="../_images/49.v2.1.jpg" class="align-center" src="../_images/49.v2.1.jpg" />
+<ul class="simple">
+<li><p>センターパートの方向に注意。</p></li>
+</ul>
+<img alt="../_images/49.v2.2.jpg" class="align-center" src="../_images/49.v2.2.jpg" />
+<img alt="../_images/49.v2.3.jpg" class="align-center" src="../_images/49.v2.3.jpg" />
+</section>
+<section id="id37">
+<h4>ステップ5.2 ヒップ・パーツ<a class="headerlink" href="#id37" title="Permalink to this headline"></a></h4>
+<p>サーボの位置を参考に、4つのヒップパーツを組み立てる。</p>
+<img alt="../_images/49.v2.6.jpg" class="align-center" src="../_images/49.v2.6.jpg" />
+<img alt="../_images/49.v2.7.jpg" class="align-center" src="../_images/49.v2.7.jpg" />
+<ul class="simple">
+<li><p>No.1、4、7、10サーボをサーボMCU基板に接続する。</p></li>
+</ul>
+<img alt="../_images/v2pro.1.jpg" class="align-center" src="../_images/v2pro.1.jpg" />
+<ul class="simple">
+<li><p>残りのサーボをサーボ MCU PCB 基板に接続する。</p></li>
+</ul>
+<img alt="../_images/v2pro.2.jpg" class="align-center" src="../_images/v2pro.2.jpg" />
+<p>サーボケーブルコネクターの指示に注意する。</p>
+<img alt="../_images/v2pro.2.1.jpg" class="align-center" src="../_images/v2pro.2.1.jpg" />
+<ul class="simple">
+<li><p>DIY ケーブルを使用して、トップ PCB ボードとサーボ MCU PCB ボードを接続します。</p></li>
+</ul>
+<img alt="../_images/v2pro.3.jpg" class="align-center" src="../_images/v2pro.3.jpg" />
+<ul class="simple">
+<li><p>バッテリーの電源を入れ、トップPCBボードに接続する。</p></li>
+</ul>
+<img alt="../_images/v2pro.4.jpg" class="align-center" src="../_images/v2pro.4.jpg" />
+<ul class="simple">
+<li><p>4つの黒いヒップパーツを、相対するサーボ（No.1,4,7,10）に接続します。</p></li>
+</ul>
+<img alt="../_images/v2pro.5.jpg" class="align-center" src="../_images/v2pro.5.jpg" />
+<p>股関節の4つのパーツを体につなげる、注意してください。</p>
+<ul class="simple">
+<li><p>今はバッテリーの電源を切らないでください。</p></li>
+<li><p>すべてのサーボの位置が正しいことを確認する。</p></li>
+</ul>
+</section>
+<section id="id38">
+<h4>ステップ5.3 前身頃と後身頃<a class="headerlink" href="#id38" title="Permalink to this headline"></a></h4>
+<p>バッテリーの電源を切り、赤いケーブルの位置を調整し、フロントとバックのボディパーツを接続する。</p>
+<img alt="../_images/v2pro.6.jpg" class="align-center" src="../_images/v2pro.6.jpg" />
+<p>ネジを使ってトップPCBボードを固定する。</p>
+<img alt="../_images/v2pro.7.jpg" class="align-center" src="../_images/v2pro.7.jpg" />
+<p>サーボMCU PCBボードをテープで締め付けることができる。</p>
+<img alt="../_images/v2pro.7.1.jpg" class="align-center" src="../_images/v2pro.7.1.jpg" />
+<p>バッテリーに電源を入れ、トップPCBボードに接続し、4つの黒いヒップパーツの位置が正しいことを確認する。</p>
+<img alt="../_images/v2pro.8.jpg" class="align-center" src="../_images/v2pro.8.jpg" />
+<p>センターパーツをボトムカーボンファイバーに接続する。</p>
+<img alt="../_images/v2pro.9.jpg" class="align-center" src="../_images/v2pro.9.jpg" />
+<ul class="simple">
+<li><p>カーボンファイバーのフロントとリアの向きに注意。</p></li>
+</ul>
+</section>
+<section id="id39">
+<h4>ステップ5.4 4本の脚を本体に組み付ける<a class="headerlink" href="#id39" title="Permalink to this headline"></a></h4>
+<p>組み立て済みの脚4本を準備する</p>
+<img alt="../_images/v2pro.10.jpg" class="align-center" src="../_images/v2pro.10.jpg" />
+<p>理論的にベストな角度に注意を払い、できるだけ理論的にベストな角度に合わせる方がいい。</p>
+<p>でも、後でソフトウェアを使って角度を調整するから心配しないで。</p>
+<img alt="../_images/v2pro.11.jpg" class="align-center" src="../_images/v2pro.11.jpg" />
+<img alt="../_images/v2pro.12.jpg" class="align-center" src="../_images/v2pro.12.jpg" />
+</section>
+<section id="id40">
+<h4>ステップ5.5 バッテリーを本体に組み付ける<a class="headerlink" href="#id40" title="Permalink to this headline"></a></h4>
+<img alt="../_images/49.v2.28.jpg" class="align-center" src="../_images/49.v2.28.jpg" />
+<p>バッテリーを後方にスライドさせ、固定します。</p>
+<img alt="../_images/49.v2.29.jpg" class="align-center" src="../_images/49.v2.29.jpg" />
+<img alt="../_images/85.jpg" class="align-center" src="../_images/85.jpg" />
+<img alt="../_images/84.jpg" class="align-center" src="../_images/84.jpg" />
+</section>
+<section id="id41">
+<h4>ステップ5.6 スピーカーの組み立て<a class="headerlink" href="#id41" title="Permalink to this headline"></a></h4>
+<img alt="../_images/MP2.Speak.1.jpg" class="align-center" src="../_images/MP2.Speak.1.jpg" />
+<img alt="../_images/MP2.Speak.2.jpg" class="align-center" src="../_images/MP2.Speak.2.jpg" />
+</section>
+</section>
+<section id="id42">
+<h3>6.カバーアセンブリ<a class="headerlink" href="#id42" title="Permalink to this headline"></a></h3>
+<p>以下のビデオクリップをご覧ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Nw8dl4CGt9A?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><section id="id43">
+<h4>ステップ6.1 サイドパネル<a class="headerlink" href="#id43" title="Permalink to this headline"></a></h4>
+<img alt="../_images/111.v2.jpg" class="align-center" src="../_images/111.v2.jpg" />
+<img alt="../_images/112.v2.jpg" class="align-center" src="../_images/112.v2.jpg" />
+</section>
+<section id="id44">
+<h4>ステップ6.2 シンガード<a class="headerlink" href="#id44" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>M2x10mmの皿ネジを4本使用する。</p></li>
+</ul>
+<img alt="../_images/113.v2.jpg" class="align-center" src="../_images/113.v2.jpg" />
+<img alt="../_images/114.v2.jpg" class="align-center" src="../_images/114.v2.jpg" />
+</section>
+<section id="id45">
+<h4>ステップ6.3<a class="headerlink" href="#id45" title="Permalink to this headline">肩</a></h4>
+<ul class="simple">
+<li><p>まずネジだけを差し込み、次にショルダー部を隙間に差し込みます。ショルダー部の穴に2mmの六角ドライバーを差し込み、ネジを締めます。</p></li>
+</ul>
+<img alt="../_images/114.v2.2.jpg" class="align-center" src="../_images/114.v2.2.jpg" />
+<img alt="../_images/117.v2.jpg" class="align-center" src="../_images/117.v2.jpg" />
+<img alt="../_images/117.v2.2.jpg" class="align-center" src="../_images/117.v2.2.jpg" />
+<img alt="../_images/122.v2.jpg" class="align-center" src="../_images/122.v2.jpg" />
+</section>
+<section id="id46">
+<h4>ステップ6.4<a class="headerlink" href="#id46" title="Permalink to this headline">靴</a></h4>
+<ul class="simple">
+<li><p>4つのシューズを履く。</p></li>
+</ul>
+<img alt="../_images/122.v2.jpg" class="align-center" src="../_images/122.v2.jpg" />
+<img alt="../_images/123.v2.jpg" class="align-center" src="../_images/123.v2.jpg" />
+</section>
+<section id="id47">
+<h4>コンプリート<a class="headerlink" href="#id47" title="Permalink to this headline">！</a></h4>
+</section>
+</section>
+<section id="id48">
+<h3>7.<a class="headerlink" href="#id48" title="Permalink to this headline">アドオンアセンブリ</a></h3>
+<section id="id49">
+<h4>ステップ7.1<a class="headerlink" href="#id49" title="Permalink to this headline">ライダー</a></h4>
+<p>ライダーをご注文の場合、3Dプリントされたライダーホルダーとカスタムケーブルが一緒に発送されます。<a class="reference external" href="https://drive.google.com/drive/folders/1G8TsAhhomSA2-VkI1Wiqmuhu92EsJNb2">Mini Pupper2のSTLファイルを</a>使用して、ご自身でホルダーをプリントすることもできます。</p>
+<img alt="../_images/MP2.Lidar.1.jpg" class="align-center" src="../_images/MP2.Lidar.1.jpg" />
+<p>3Dプリントしたパーツに3つのホルダーを接続する。</p>
+<img alt="../_images/MP2.Lidar.2.jpg" class="align-center" src="../_images/MP2.Lidar.2.jpg" />
+<p>カスタムケーブルをPCBボード上のLidarコネクタに接続する。</p>
+<img alt="../_images/MP2.Lidar.3.jpg" class="align-center" src="../_images/MP2.Lidar.3.jpg" />
+<p>3Dプリントした部品をPCBボードに固定する。</p>
+<img alt="../_images/MP2.Lidar.4.jpg" class="align-center" src="../_images/MP2.Lidar.4.jpg" />
+<p>カスタムケーブルをライダーモジュールに接続し、セルフタッピングネジで固定する。</p>
+<img alt="../_images/MP2.Lidar.5.jpg" class="align-center" src="../_images/MP2.Lidar.5.jpg" />
+</section>
+<section id="id51">
+<h4>ステップ7.2<a class="headerlink" href="#id51" title="Permalink to this headline">カメラ</a></h4>
+<p>Mini Pupper 2はシングルPiカメラまたはOpenCV OAK-D-Liteカメラモジュールもサポートしています。<a class="reference external" href="https://drive.google.com/drive/folders/1G8TsAhhomSA2-VkI1Wiqmuhu92EsJNb2">Mini Pupper2のSTLファイルを</a>使用して、自分でホルダーを印刷することもできます。</p>
+<img alt="../_images/MP2.LidarCamera.1.jpg" class="align-center" src="../_images/MP2.LidarCamera.1.jpg" />
+<img alt="../_images/MP2.LidarCamera.2.jpg" class="align-center" src="../_images/MP2.LidarCamera.2.jpg" />
+<img alt="../_images/MP2.LidarCamera.3.jpg" class="align-center" src="../_images/MP2.LidarCamera.3.jpg" />
+<div style="page-break-before: always;"></div></section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QuickStartGuide.html" class="btn btn-neutral float-left" title="Quick Start Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 前へ</a> <a href="SoftwareCalibration.html" class="btn btn-neutral float-right" title="Software Calibration" accesskey="n" rel="next">次へ<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a></div>
+
+ <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2024, MangDang Technology Co., Limited.</p>
+  </div>
+
+ <a href="https://readthedocs.org">Read the Docsによって</a>提供された<a href="https://github.com/readthedocs/sphinx_rtd_theme">テーマを使って</a>、<a href="https://www.sphinx-doc.org/">Sphinxで</a>構築されています。</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

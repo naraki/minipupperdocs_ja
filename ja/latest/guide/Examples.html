@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>例 - Mini Pupper 2.0.0-alpha ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mechanical Design for Mini Pupper" href="../reference/Design.html" />
+    <link rel="prev" title="Multimodal Generative AI" href="MultimodalGenAI.html" /> 
+<script async="" type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="minipupperdocs" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/guide/Examples.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Mini Pupper         </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">ガイド</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Features.html">特徴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToOrder.html">ご注文方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStartGuide.html">クイックスタートガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Assembly.html">組立</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SoftwareCalibration.html">ソフトウェア校正</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2Guide.html">ROS2ガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">機械学習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning.html">強化学習(RL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultimodalGenAI.html">マルチモーダル生成AI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">例</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#custom-shell-parts">1.カスタムシェル部品</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-facial-animation">2.カスタムフェイシャルアニメーション</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">2.1 前提条件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run">2.2 ラン</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#keyboard-controller">3.キーボードコントローラー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#keyboard-controller-based-on-nonros-version">3.1 非ROSバージョンのキーボードコントローラー</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keyboard-controller-based-on-ros-version">3.2 ROSバージョンに基づくキーボード・コントローラー</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#web-controller">4.ウェブコントローラ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-control-a-mini-pupper-pwm-servo">5.Mini PupperPWMサーボの制御方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#forward-kinematics">6.前進運動学</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lecture">講義</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sample-code">サンプルコード</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#inverse-kinematics">7.インバース・キネマティクス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">講義</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">サンプルコード</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pid-control">8.PID制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">9.ドッカー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker-for-pupper">9.1 PupperのためのDocker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-for-host">9.2 ホスト用Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#scratch-program">10.スクラッチプログラム</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">参考文献</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/Design.html">Mini Pupperのメカニカルデザイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/PCB.html">プリント基板</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/FAQ.html">FAQ（よくある質問）</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
+         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+         <a href="../index.html">Mini Pupper</a>     </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> "</li>
+      <li>例</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guide/Examples.rst.txt" rel="nofollow"> ページのソースを見る</a>     </li>
+  </ul>
+  <hr />
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples">
+<h1><a class="headerlink" href="#examples" title="Permalink to this headline">例</a><a class="toc-backref" href="#id6"></a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">内容</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#examples" id="id6">例</a></p>
+<ul>
+<li><p><a class="reference internal" href="#custom-shell-parts" id="id7">1.カスタムシェル部品</a></p></li>
+<li><p><a class="reference internal" href="#custom-facial-animation" id="id8">2.カスタムフェイシャルアニメーション</a></p></li>
+<li><p><a class="reference internal" href="#keyboard-controller" id="id9">3.キーボードコントローラー</a></p></li>
+<li><p><a class="reference internal" href="#web-controller" id="id10">4.ウェブコントローラ</a></p></li>
+<li><p><a class="reference internal" href="#how-to-control-a-mini-pupper-pwm-servo" id="id11">5.Mini PupperPWMサーボの制御方法</a></p></li>
+<li><p><a class="reference internal" href="#forward-kinematics" id="id12">6.前進運動学</a></p></li>
+<li><p><a class="reference internal" href="#inverse-kinematics" id="id13">7.インバース・キネマティクス</a></p></li>
+<li><p><a class="reference internal" href="#pid-control" id="id14">8.PID制御</a></p></li>
+<li><p><a class="reference internal" href="#docker" id="id15">9.ドッカー</a></p></li>
+<li><p><a class="reference internal" href="#scratch-program" id="id16">10.スクラッチプログラム</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="custom-shell-parts">
+<h2><a class="toc-backref" href="#id7">1.カスタムシェルパーツ</a><a class="headerlink" href="#custom-shell-parts" title="Permalink to this headline"></a></h2>
+<p>Mini Pupperはオープンソースプロジェクトであり、あなたが望むものをカスタマイズすることができます。<a class="reference external" href="https://drive.google.com/drive/folders/12FDFbZzO61Euh8pJI9oCxN-eLVm5zjyi?usp=sharing">3Dプリントされた</a>すべての<a class="reference external" href="https://drive.google.com/drive/folders/12FDFbZzO61Euh8pJI9oCxN-eLVm5zjyi?usp=sharing">シェルファイルを</a>見つけることができ、それらをカスタマイズすることができます。</p>
+<p>LEGOのパーツに接続するのはどうだろう？</p>
+<img alt="../_images/LEGO.jpg" class="align-center" src="../_images/LEGO.jpg" />
+<p>あるいは、@nisshan_さんのようにDIYするか。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/PfGvPq9QuLQ?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div></section>
+<section id="custom-facial-animation">
+<h2><a class="toc-backref" href="#id8">2.カスタムフェイシャルアニメーション</a><a class="headerlink" href="#custom-facial-animation" title="Permalink to this headline"></a></h2>
+<section id="prerequisites">
+<h3>2.1<a class="headerlink" href="#prerequisites" title="Permalink to this headline">前提</a>条件</h3>
+<ul class="simple">
+<li><p>HDMIディスプレイ</p></li>
+<li><p>マイクロHDMIケーブル</p></li>
+<li><p>キーボードとマウス</p></li>
+<li><p>新しいカスタム画像(サイズ: 320x240 pix)</p></li>
+</ul>
+<img alt="../_images/165.jpg" class="align-center" src="../_images/165.jpg" />
+</section>
+<section id="run">
+<h3>2.2<a class="headerlink" href="#run" title="Permalink to this headline">Run</a></h3>
+<ul class="simple">
+<li><p>MiniPupperをディスプレイ、キーボード、マウスに接続します。</p></li>
+<li><p>Ubuntuログイン(デフォルトパスワードはmangdang)</p></li>
+</ul>
+<img alt="../_images/172.jpg" class="align-center" src="../_images/172.jpg" />
+<ul class="simple">
+<li><p>logo.pngファイルをカスタム画像で置き換える。</p></li>
+<li><p>Mini Pupperを再起動すると、カスタム画像が表示されます。</p></li>
+</ul>
+<img alt="../_images/172.2.jpg" class="align-center" src="../_images/172.2.jpg" />
+</section>
+</section>
+<section id="keyboard-controller">
+<h2><a class="toc-backref" href="#id9">3.キーボード・コントローラー</a><a class="headerlink" href="#keyboard-controller" title="Permalink to this headline"></a></h2>
+<section id="keyboard-controller-based-on-nonros-version">
+<h3>3.1 非ROSバージョンに基づくキーボードコントローラー<a class="headerlink" href="#keyboard-controller-based-on-nonros-version" title="Permalink to this headline"></a></h3>
+<p>この機能は<a class="reference external" href="https://github.com/stanfordroboticsclub/PupperKeyboardController">PupperKeyboardControllerプロジェクトに基づいて</a>います。<a class="reference external" href="https://github.com/stanfordroboticsclub/PupperKeyboardController">PupperKeyboardControllerは</a>PygameベースのStanford Pupper用キーボードコントローラーです。</p>
+<ul class="simple">
+<li><p>PyGameをインストールする</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pygame</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>コントロール</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wasd</span><span class="p">:</span> <span class="n">left</span> <span class="n">joystick</span>
+<span class="n">arrow</span> <span class="n">keys</span><span class="p">:</span> <span class="n">right</span> <span class="n">joystick</span>
+<span class="n">q</span><span class="p">:</span> <span class="n">L1</span>
+<span class="n">e</span><span class="p">:</span> <span class="n">R1</span>
+<span class="n">ijkl</span><span class="p">:</span> <span class="n">d</span><span class="o">-</span><span class="n">pad</span>
+<span class="n">x</span><span class="p">:</span> <span class="n">X</span>
+<span class="n">square</span><span class="p">:</span> <span class="n">u</span>
+<span class="n">triangle</span><span class="p">:</span> <span class="n">t</span>
+<span class="n">circle</span><span class="p">:</span> <span class="n">c</span>
+</pre></div>
+</div>
+</section>
+<section id="keyboard-controller-based-on-ros-version">
+<h3>3.2 ROS<a class="headerlink" href="#keyboard-controller-based-on-ros-version" title="Permalink to this headline">バージョンに</a>基づくキーボード・コントローラー</h3>
+<p>SLAMの項を参照のこと。</p>
+</section>
+</section>
+<section id="web-controller">
+<h2><a class="toc-backref" href="#id10">4.ウェブコントローラ</a><a class="headerlink" href="#web-controller" title="Permalink to this headline"></a></h2>
+<p><a class="reference external" href="https://github.com/mangdangroboticsclub/mini_pupper_web_controller">Mini Pupperウェブコントローラプロジェクトを</a>参照してください。</p>
+</section>
+<section id="how-to-control-a-mini-pupper-pwm-servo">
+<h2><a class="toc-backref" href="#id11">5.Mini PupperPWMサーボの制御方法</a><a class="headerlink" href="#how-to-control-a-mini-pupper-pwm-servo" title="Permalink to this headline"></a></h2>
+<p>ミニPupperサーボはPWMサーボで、以下の写真のようにPiボードにサーボを接続し、サンプルコードを実行すると、サーボが動きます。 コードは<a class="reference external" href="https://drive.google.com/drive/folders/1QUYSe1RQOWlZGtCwDqMqtEGB5tKNtcVj?usp=sharing">こちらに</a>あります。 WindowsやUbuntuのPython環境で、以下の写真のように実行できます。</p>
+</section>
+<section id="forward-kinematics">
+<h2><a class="toc-backref" href="#id12">6.</a><a class="headerlink" href="#forward-kinematics" title="Permalink to this headline">フォワード・キネマティクス</a><a class="toc-backref" href="#id12"></a></h2>
+<section id="lecture">
+<h3><a class="headerlink" href="#lecture" title="Permalink to this headline">レクチャー</a></h3>
+<p>まずはネットでフォワードキネマティックスの基礎知識を勉強してください。</p>
+<p>また、<a class="reference external" href="https://pupper-independent-study.readthedocs.io/en/latest/course-material/lab-3-spr22.html">スタンフォード大学ロボット工学自主研究による</a>以下のビデオクリップもご参照ください。</p>
+<p>前方運動学講義</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/nFqTsAEywpY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><p>いくつかのことを明確にするためのフォローアップ講義</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/XAUXrRtINTQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div></section>
+<section id="sample-code">
+<h3>サンプル<a class="headerlink" href="#sample-code" title="Permalink to this headline">コード</a></h3>
+<p>Mini Pupperをベースにした簡単な順運動学のサンプルコードを用意しましたので、<a class="reference external" href="https://drive.google.com/drive/folders/1QUYSe1RQOWlZGtCwDqMqtEGB5tKNtcVj?usp=sharing">こちらで試してみて</a>ください。 WindowsやUbuntuのPython環境で、次の図のように実行できます。</p>
+<img alt="../_images/ForwardKinematics_SimpleModeMove.png" class="align-center" src="../_images/ForwardKinematics_SimpleModeMove.png" />
+</section>
+</section>
+<section id="inverse-kinematics">
+<h2><a class="toc-backref" href="#id13">7.</a><a class="headerlink" href="#inverse-kinematics" title="Permalink to this headline">インバース・キネマティクス</a><a class="toc-backref" href="#id13"></a></h2>
+<section id="id2">
+<h3><a class="headerlink" href="#id2" title="Permalink to this headline">レクチャー</a></h3>
+<p>まずはネットでフォワードキネマティックスの基礎知識を勉強してください。</p>
+<p>また、<a class="reference external" href="https://pupper-independent-study.readthedocs.io/en/latest/course-material/lab-4-spr22.html">スタンフォード大学ロボット工学自主研究による</a>以下のビデオクリップもご参照ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/FvQ6NbqDR1U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div></section>
+<section id="id4">
+<h3>サンプル<a class="headerlink" href="#id4" title="Permalink to this headline">コード</a></h3>
+<p>Mini Pupperをベースにした簡単なインバースキネマティクスのサンプルコードを用意しましたので、<a class="reference external" href="https://drive.google.com/drive/folders/1QUYSe1RQOWlZGtCwDqMqtEGB5tKNtcVj?usp=sharing">こちらで</a>お試しください。 WindowsやUbuntuのPython環境で、以下の図のように実行することができます。</p>
+<img alt="../_images/ForwardKinematics_SimpleModeMove.png" class="align-center" src="../_images/ForwardKinematics_SimpleModeMove.png" />
+</section>
+</section>
+<section id="pid-control">
+<h2><a class="toc-backref" href="#id14">8.PID制御</a><a class="headerlink" href="#pid-control" title="Permalink to this headline"></a></h2>
+<p>後で更新する！</p>
+</section>
+<section id="docker">
+<h2><a class="toc-backref" href="#id15">9.</a><a class="headerlink" href="#docker" title="Permalink to this headline">ドッカー</a><a class="toc-backref" href="#id15"></a></h2>
+<section id="docker-for-pupper">
+<h3>9.1 Docker for<a class="headerlink" href="#docker-for-pupper" title="Permalink to this headline">Pupper</a></h3>
+<p>Mini Pupper ROSパッケージのDockerfileは、<a class="reference external" href="https://github.com/Tiryoh/docker-mini-pupper-ros.git">docker-mini-pupper-rosプロジェクトに</a>由来します。</p>
+</section>
+<section id="docker-for-host">
+<h3>9.2 Docker for<a class="headerlink" href="#docker-for-host" title="Permalink to this headline">Host</a></h3>
+<p>ネットワークを介してMini Pupperとインターフェースするためのホストコンピュータのセットアップは、<a class="reference external" href="https://github.com/zmk5/mp_host_setup.git">mp_host_setupプロジェクトから来て</a>います。</p>
+</section>
+</section>
+<section id="scratch-program">
+<h2><a class="toc-backref" href="#id16">10.Scratchプログラム</a><a class="headerlink" href="#scratch-program" title="Permalink to this headline"></a></h2>
+<p>近日中に更新する予定だ！</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MultimodalGenAI.html" class="btn btn-neutral float-left" title="Multimodal Generative AI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 前へ</a> <a href="../reference/Design.html" class="btn btn-neutral float-right" title="Mechanical Design for Mini Pupper" accesskey="n" rel="next">次へ<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a></div>
+
+ <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2024, MangDang Technology Co., Limited.</p>
+  </div>
+
+ <a href="https://readthedocs.org">Read the Docsによって</a>提供された<a href="https://github.com/readthedocs/sphinx_rtd_theme">テーマを使って</a>、<a href="https://www.sphinx-doc.org/">Sphinxで</a>構築されています。</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

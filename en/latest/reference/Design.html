@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mechanical Design for Mini Pupper &mdash; Mini Pupper 2.0.0-alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PCB" href="PCB.html" />
+    <link rel="prev" title="Examples" href="../guide/Examples.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="minipupperdocs" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/reference/Design.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Mini Pupper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/Features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/HowToOrder.html">How To Order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/QuickStartGuide.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/Assembly.html">Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/SoftwareCalibration.html">Software Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/ROS2Guide.html">ROS2 Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/MachineLearning.html">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/ReinforcementLearning.html">Reinforcement Learning(RL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/MultimodalGenAI.html">Multimodal Generative AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/Examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mechanical Design for Mini Pupper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#fusion-360-cad-model">Fusion 360 CAD model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bom">BOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stl">STL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PCB.html">PCB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ(Frequently Asked Questions)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Mini Pupper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Mechanical Design for Mini Pupper</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/Design.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mechanical-design-for-mini-pupper">
+<h1><a class="toc-backref" href="#id1">Mechanical Design for Mini Pupper</a><a class="headerlink" href="#mechanical-design-for-mini-pupper" title="Permalink to this headline"></a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#mechanical-design-for-mini-pupper" id="id1">Mechanical Design for Mini Pupper</a></p>
+<ul>
+<li><p><a class="reference internal" href="#fusion-360-cad-model" id="id2">Fusion 360 CAD model</a></p></li>
+<li><p><a class="reference internal" href="#bom" id="id3">BOM</a></p></li>
+<li><p><a class="reference internal" href="#stl" id="id4">STL</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="fusion-360-cad-model">
+<h2><a class="toc-backref" href="#id2">Fusion 360 CAD model</a><a class="headerlink" href="#fusion-360-cad-model" title="Permalink to this headline"></a></h2>
+<p>Mini Pupper: <a class="reference external" href="https://a360.co/3wFLSlT">https://a360.co/3wFLSlT</a></p>
+<iframe src="https://gmail1515401.autodesk360.com/g/shares/SH35dfcQT936092f0e43940e1e402362e6d4?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe></section>
+<section id="bom">
+<h2><a class="toc-backref" href="#id3">BOM</a><a class="headerlink" href="#bom" title="Permalink to this headline"></a></h2>
+<p>Link: <a class="reference external" href="https://docs.google.com/spreadsheets/d/18kcRAv8SLu5tUWO7OH3dYtkm5W1PESd2/edit?usp=sharing&amp;ouid=111309880631794759167">Bill of Materials of Mini Pupper</a></p>
+<iframe height = 400 width = 600 src="https://docs.google.com/spreadsheets/d/18kcRAv8SLu5tUWO7OH3dYtkm5W1PESd2/edit?usp=sharing&ouid=111309880631794759167&rtpof=true&amp;headers=false"></iframe></section>
+<section id="stl">
+<h2><a class="toc-backref" href="#id4">STL</a><a class="headerlink" href="#stl" title="Permalink to this headline"></a></h2>
+<p>Link: <a class="reference external" href="https://drive.google.com/drive/folders/1kafPZzHxWbbSfRwDxMcHOmNnpVqOlBKH?usp=sharing">Mini Pupper STL files for 3D print</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../guide/Examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="PCB.html" class="btn btn-neutral float-right" title="PCB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MangDang Technology Co., Limited.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

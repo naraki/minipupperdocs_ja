@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROS2 Guide &mdash; Mini Pupper 2.0.0-alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Machine Learning" href="MachineLearning.html" />
+    <link rel="prev" title="Software Calibration" href="SoftwareCalibration.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="minipupperdocs" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/guide/ROS2Guide.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Mini Pupper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToOrder.html">How To Order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStartGuide.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Assembly.html">Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SoftwareCalibration.html">Software Calibration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS2 Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pc-setup">1. PC Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-ros-2-humble">1.1 Install ROS 2 Humble</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-mini-pupper-ros-repository">1.2 Install Mini Pupper ROS Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-dependent-ros-2-packages-and-build-package">1.3 Install Dependent ROS 2 Packages and Build Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#export-robot-model">1.4. Export Robot Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mini-pupper-setup">2. Mini Pupper Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#image-flashing">2.1 Image flashing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wifi-setting">2.2 Wifi-Setting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robot-model-setting">2.3 Robot model setting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-mini-pupper-to-pc">3. Connecting Mini Pupper to PC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#joystick-setup">1. Joystick Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bringup">2. Bringup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#teleoporation">3. Teleoporation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#keyboard">3.1 Keyboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#joystick">3.2 Joystick</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#slam">SLAM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-slam-node">1. Run SLAM Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#teleoperation">2. Teleoperation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">2.1 Keyboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">2.2 Joystick</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#save-the-map">3. Save the map</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#navigation">Navigation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-navigation-node">1. Run Navigation Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#estimate-initial-pose">2. Estimate Initial Pose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-navigation-goal">3. Set Navigation Goal</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#simulation">Simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rviz-simulation">1. RViz Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#launch-simulation-world">1.1 Launch Simulation World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.2. Teleoperation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gazebo-simulation">2. Gazebo Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2.1 Launch Simulation World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">2.2. Teleoperation:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#test-slam-mapping-in-gazebo">3. Test SLAM (Mapping) in Gazebo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.1 Launch Simulation World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.2 Run SLAM Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.3 Teleoperation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.4 Save the map</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#navigation-simulation">4. Navigation Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">4.1 Launch Simulation World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#launch-navigation-simulation">4.2 Launch Navigation Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">4.3 Estimate Initial Pose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">4.4 Set Navigation Goal</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dance">Dance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-music-packages">1. Install Music Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-bringup">2. Launch Bringup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-music-node">3. Launch Music Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-dance-node">4. Launch Dance Node</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning.html">Reinforcement Learning(RL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultimodalGenAI.html">Multimodal Generative AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/Design.html">Mechanical Design for Mini Pupper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/PCB.html">PCB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/FAQ.html">FAQ(Frequently Asked Questions)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Mini Pupper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>ROS2 Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guide/ROS2Guide.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ros2-guide">
+<h1><a class="toc-backref" href="#id13">ROS2 Guide</a><a class="headerlink" href="#ros2-guide" title="Permalink to this headline"></a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#ros2-guide" id="id13">ROS2 Guide</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installation" id="id14">Installation</a></p></li>
+<li><p><a class="reference internal" href="#quick-start" id="id15">Quick Start</a></p></li>
+<li><p><a class="reference internal" href="#slam" id="id16">SLAM</a></p></li>
+<li><p><a class="reference internal" href="#navigation" id="id17">Navigation</a></p></li>
+<li><p><a class="reference internal" href="#simulation" id="id18">Simulation</a></p></li>
+<li><p><a class="reference internal" href="#dance" id="id19">Dance</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="installation">
+<h2><a class="toc-backref" href="#id14">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Mini Pupper’s ROS2 installation package is based on <a class="reference external" href="https://github.com/Tiryoh/ros2_setup_scripts_ubuntu">ros2_setup_scripts</a>  which is written by one of our contributor &#64;Tiryoh.</p></li>
+<li><p>Mini Pupper’s ROS2 version is based on <a class="reference external" href="https://github.com/chvmp/champ">Champ</a>  open source project, and we made some changes to SLAM and Navigation functions.</p></li>
+<li><p>Mini Pupper’s software supporting lidar sensor is based on <a class="reference external" href="https://github.com/ldrobotSensorTeam/ldlidar_stl_ros2">ldlidar_stl_ros2</a>  open source project.</p></li>
+</ul>
+<p>We recommend you explore Mini Pupper with ROS2 network, make sure your PC and Mini Pupper have connected to the same WiFi.</p>
+<p>Through the following steps, you will be able to setup the ros2 for your remote PC and the Mini Pupper.</p>
+<section id="pc-setup">
+<h3>1. PC Setup<a class="headerlink" href="#pc-setup" title="Permalink to this headline"></a></h3>
+<p>PC Setup corresponds to PC (your desktop or laptop PC) for controlling Mini Pupper remotely. Do not apply these commands to your Mini Pupper.</p>
+<p><strong>WARNING: The contents in this chapter corresponds to the Remote PC (your desktop or laptop PC) which will control Mini Pupper. Do not apply these commands to your Raspberry Pi on Mini Pupper or Compute Module 4 on Mini Pupper 2.</strong></p>
+<p><strong>NOTE: This instruction was tested on Linux with Ubuntu 22.04 and ROS2 Humble.</strong></p>
+<section id="install-ros-2-humble">
+<h4>1.1 Install ROS 2 Humble<a class="headerlink" href="#install-ros-2-humble" title="Permalink to this headline"></a></h4>
+<p>Open the terminal with Ctrl+Alt+T from Remote PC.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Tiryoh</span><span class="o">/</span><span class="n">ros2_setup_scripts_ubuntu</span><span class="o">.</span><span class="n">git</span>
+<span class="o">~/</span><span class="n">ros2_setup_scripts_ubuntu</span><span class="o">/</span><span class="n">ros2</span><span class="o">-</span><span class="n">humble</span><span class="o">-</span><span class="n">ros</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">main</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">ros</span><span class="o">/</span><span class="n">humble</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+</pre></div>
+</div>
+<p>After ROS 2 installation, download the Mini Pupper ROS package in the workspace.</p>
+</section>
+<section id="install-mini-pupper-ros-repository">
+<h4>1.2 Install Mini Pupper ROS Repository<a class="headerlink" href="#install-mini-pupper-ros-repository" title="Permalink to this headline"></a></h4>
+<p>Open the terminal with Ctrl+Alt+T from Remote PC.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">src</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">src</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mangdangroboticsclub</span><span class="o">/</span><span class="n">mini_pupper_ros</span><span class="o">.</span><span class="n">git</span> <span class="o">-</span><span class="n">b</span> <span class="n">ros2</span><span class="o">-</span><span class="n">dev</span> <span class="n">mini_pupper_ros</span>
+<span class="n">vcs</span> <span class="kn">import</span> <span class="o">&lt;</span> <span class="n">mini_pupper_ros</span><span class="o">/.</span><span class="n">minipupper</span><span class="o">.</span><span class="n">repos</span> <span class="o">--</span><span class="n">recursive</span>
+</pre></div>
+</div>
+</section>
+<section id="install-dependent-ros-2-packages-and-build-package">
+<h4>1.3 Install Dependent ROS 2 Packages and Build Package<a class="headerlink" href="#install-dependent-ros-2-packages-and-build-package" title="Permalink to this headline"></a></h4>
+<p>Open the terminal with Ctrl+Alt+T from Remote PC.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">ros2_ws</span>
+<span class="n">rosdep</span> <span class="n">install</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">paths</span> <span class="n">src</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">src</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">humble</span><span class="o">-</span><span class="n">teleop</span><span class="o">-</span><span class="n">twist</span><span class="o">-</span><span class="n">keyboard</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">humble</span><span class="o">-</span><span class="n">teleop</span><span class="o">-</span><span class="n">twist</span><span class="o">-</span><span class="n">joy</span>
+<span class="n">colcon</span> <span class="n">build</span> <span class="o">--</span><span class="n">symlink</span><span class="o">-</span><span class="n">install</span>
+</pre></div>
+</div>
+</section>
+<section id="export-robot-model">
+<h4>1.4. Export Robot Model<a class="headerlink" href="#export-robot-model" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Open ~/.bashrc with text editor in the terminal.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Scroll to the end of the file.</p></li>
+</ol>
+<img alt="../_images/bashrc.png" class="align-center" src="../_images/bashrc.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add the following line to export the robot model with the computer. Please use the proper keyword among mini_pupper, mini_pupper_2 for the ROBOT_MODEL parameter according to your robot model.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ROBOT_MODEL</span><span class="o">=</span><span class="n">mini_pupper_2</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Save the file with Ctrl+S and exit with Ctrl+X.</p></li>
+<li><p>Run the following command to apply the change.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mini-pupper-setup">
+<h3>2. Mini Pupper Setup<a class="headerlink" href="#mini-pupper-setup" title="Permalink to this headline"></a></h3>
+<section id="image-flashing">
+<h4>2.1 Image flashing<a class="headerlink" href="#image-flashing" title="Permalink to this headline"></a></h4>
+<p>The steps below are for you to setup ROS2 environment of Mini Pupper by yourself.
+You can also download the <a class="reference external" href="https://drive.google.com/drive/folders/1ZF4vulHbXvVF4RPWWGxEe7rxcJ9LyeEu?usp=sharing">pre-built ROS image</a> for Mini Pupper side, named “YYYYMMDD_MD-Puppy2_ROS2Humble_Ubuntu22.04.img” or “YYYYMMDD_MD-Puppy1_ROS2Humble_Ubuntu22.04.img”. Please select the appropriate image according to the date and the robot model.</p>
+<ol class="arabic simple">
+<li><p>The image can be flashed into the card using an adaptor. If your PC do not have a microSD slot, please use a microSD card reader to burn the image.</p></li>
+<li><p>Download ubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xz from the official website, and flash it into your SD card according to the following guide.</p></li>
+<li><p>Download balenaEtcher from <a class="reference external" href="https://etcher.balena.io/">https://etcher.balena.io/</a>.</p></li>
+<li><p>Press the blue button to choose the destination where you download the image and select the image.</p></li>
+</ol>
+<img alt="../_images/choose-image.png" class="align-center" src="../_images/choose-image.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Press the blue button to choose the destination where you are flashing the image into (the address of the SD card).</p></li>
+</ol>
+<img alt="../_images/target1.png" class="align-center" src="../_images/target1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/target2.png" class="align-center" src="../_images/target2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Press the flash button and you will see the image below. Wait until the process to complete.</p></li>
+</ol>
+<img alt="../_images/flashing.png" class="align-center" src="../_images/flashing.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/validating.png" class="align-center" src="../_images/validating.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="wifi-setting">
+<h4>2.2 Wifi-Setting<a class="headerlink" href="#wifi-setting" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Plug the card into the Mini Pupper card port and setup your own wifi.</p></li>
+</ol>
+<img alt="../_images/Sd-card-reader.jpg" class="align-center" src="../_images/Sd-card-reader.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Run the following command to edit the network setting of the pupper.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">netplan</span><span class="o">/</span><span class="mi">50</span><span class="o">-</span><span class="n">cloud</span><span class="o">-</span><span class="n">init</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>When the editor is opened, edit the content as below while replacing Mangdang and mangdang with your actual wifi SSID and password.</p>
+<img alt="../_images/netplan-yaml.png" class="align-center" src="../_images/netplan-yaml.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Save the file with Ctrl+S and exit with Ctrl+X.</p></li>
+<li><p>Run the following commands to reboot and connect to your actual wifi.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">netplan</span> <span class="n">apply</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
+<span class="n">reboot</span>
+</pre></div>
+</div>
+</section>
+<section id="robot-model-setting">
+<h4>2.3 Robot model setting<a class="headerlink" href="#robot-model-setting" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>After reboot, open ~/.bashrc with text editor in the terminal.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Scroll to the end of the file.</p></li>
+</ol>
+<img alt="../_images/bashrc.png" class="align-center" src="../_images/bashrc.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add the following line to export the robot model with the computer. Please use the proper keyword among mini_pupper, mini_pupper_2 for the ROBOT_MODEL parameter according to your robot model.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ROBOT_MODEL</span><span class="o">=</span><span class="n">mini_pupper_2</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Save the file with Ctrl+S and exit with Ctrl+X.</p></li>
+<li><p>Run the following command to apply the change.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="connecting-mini-pupper-to-pc">
+<h3>3. Connecting Mini Pupper to PC<a class="headerlink" href="#connecting-mini-pupper-to-pc" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Open two terminals with Ctrl+Alt+T twice, one for connecting to Mini Pupper and one for PC local.</p></li>
+<li><p>Look at monitor of Mini Pupper to obtain the IP address of it.</p></li>
+</ol>
+<img alt="../_images/IPaddress.jpg" class="align-center" src="../_images/IPaddress.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Use one of the terminals and run the following command to connect to the Mini Pupper. The default password is “mangdang”.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Open ~/.bashrc with text editor in both terminals.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Scroll to the end of the file for both terminals.</p></li>
+</ol>
+<img alt="../_images/bashrc.png" class="align-center" src="../_images/bashrc.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Add the following line in both terminals to setup the connection. The number inputted can be any number, but it should be the same for both terminals.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ROS_DOMAIN_ID</span><span class="o">=</span><span class="mi">42</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Save the file with Ctrl+S and exit with Ctrl+X.</p></li>
+<li><p>Run the following command to apply the change.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
+<li><p>Use the following command in both terminals to confirm that the PC and the Mini Pupper are connected:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">node</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li><p>Compare the output in both terminals:</p></li>
+</ol>
+<img alt="../_images/node-list.png" class="align-center" src="../_images/node-list.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If the output in both terminals shows the same list of node which is similar to the picture, your PC and the Mini Pupper is connected</p>
+<p><strong>NOTE: the node list depends on the nodes in progress, which may not be exactly the same from the image.</strong></p>
+<div style="page-break-before: always;"></div></section>
+</section>
+<section id="quick-start">
+<h2><a class="toc-backref" href="#id15">Quick Start</a><a class="headerlink" href="#quick-start" title="Permalink to this headline"></a></h2>
+<section id="joystick-setup">
+<h3>1. Joystick Setup<a class="headerlink" href="#joystick-setup" title="Permalink to this headline"></a></h3>
+<p>Through the following steps, you will be able to connect and set up the ROS2 software for the joystick.</p>
+<ol class="arabic simple">
+<li><p>Press the HOME button on the controller.</p></li>
+</ol>
+<img alt="../_images/Bluetooth-connection-button.jpg" class="align-center" src="../_images/Bluetooth-connection-button.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Search for available bluetooth devices on your PC and connect to it.</p></li>
+</ol>
+<img alt="../_images/controller-connection.png" class="align-center" src="../_images/controller-connection.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/controller-address.png" class="align-center" src="../_images/controller-address.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The video below shows the change of flashlight colour during connection.</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/GzUFk6fD8s0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Use the following command to check the name of the joystick.</p></li>
+</ol>
+<p>Terminal output: In this case the name of the joystick is “js0”.</p>
+<img alt="../_images/dev-input.png" class="align-center" src="../_images/dev-input.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Use the following command to check if the joystick us connected.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">joystick</span>
+<span class="n">jstest</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>There will be output as followed if joystick is connected.</p>
+<img alt="../_images/jstest.png" class="align-center" src="../_images/jstest.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="bringup">
+<h3>2. Bringup<a class="headerlink" href="#bringup" title="Permalink to this headline"></a></h3>
+<p>Through the following steps, you will be able launch the software to bringup the Mini Pupper hardware.</p>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T  to connect Mini Pupper.</p></li>
+<li><p>Look at monitor of Mini Pupper to obtain the IP address of it.</p></li>
+<li><p>Use one of the terminals and run the following command to connect to the Mini Pupper. The default password is mangdang.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Bring up basic packages to start Mini Pupper applications. The command of sourcing the built package, “. ~/ros2_ws/install/setup.bash” can be replaced by “. ~/ros2_ws/install/setup.zsh”, depending on the file type you use.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>When the robot model is Mini Pupper 2, the terminal output will look like below.</p>
+<img alt="../_images/Bringup1.png" class="align-center" src="../_images/Bringup1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/Bringup2.png" class="align-center" src="../_images/Bringup2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Topics and services can be listed with commands below.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Topic list</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">topic</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<img alt="../_images/topic-list.png" class="align-center" src="../_images/topic-list.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Service list</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">service</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<img alt="../_images/service-list.png" class="align-center" src="../_images/service-list.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="teleoporation">
+<h3>3. Teleoporation<a class="headerlink" href="#teleoporation" title="Permalink to this headline"></a></h3>
+<p>Through the following steps, you will be able to teleoperate Mini Pupper either using the keyboard or joystick.</p>
+<p><strong>WARNING: Make sure to run the Bringup from the Mini Pupper before teleoperation. Teleoperate the robot, and be careful when testing the robot on the table as the robot might fall.</strong></p>
+<section id="keyboard">
+<h4>3.1 Keyboard<a class="headerlink" href="#keyboard" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+<p>Terminal output:</p>
+<img alt="../_images/keyboard-teleop.png" class="align-center" src="../_images/keyboard-teleop.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can drive the pupper using the keyboard following the guide below.</p>
+<img alt="../_images/Keyboard-guide.jpg" class="align-center" src="../_images/Keyboard-guide.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The video shows the effect of each keyboard button on the movement of the robot.</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/M9aV55VnKUw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="joystick">
+<h4>3.2 Joystick<a class="headerlink" href="#joystick" title="Permalink to this headline"></a></h4>
+<p><strong>NOTE: The design of button of joystick node on ROS2 is different from that mentioned in other sections which is used for non-ROS programs.</strong></p>
+<p><strong>WARNING: Make sure to run the Bringup from the Mini Pupper before teleoperation. Teleoperate the robot, and be careful when testing the robot on the table as the robot might fall.</strong></p>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Terminal output:</p>
+<img alt="../_images/joystick-teleop-node.png" class="align-center" src="../_images/joystick-teleop-node.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can drive the pupper using the joystick following the guide below.</p>
+<img alt="../_images/Controller-guide.jpg" class="align-center" src="../_images/Controller-guide.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The video shows the effect of each button of the joystick on the movement of the robot.</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/T8kwO7fDiqE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div style="page-break-before: always;"></div></section>
+</section>
+</section>
+<section id="slam">
+<h2><a class="toc-backref" href="#id16">SLAM</a><a class="headerlink" href="#slam" title="Permalink to this headline"></a></h2>
+<p>The SLAM (Simultaneous Localization and Mapping) is a technique to draw a map by estimating current location in an arbitrary space. Following the steps below, we can use Mini Pupper to draw a map of the surrounding area.</p>
+<p><strong>NOTE: Please run the SLAM node on Remote PC.</strong>
+<strong>Make sure to launch the Bringup from Mini Pupper before executing any operation.</strong></p>
+<section id="run-slam-node">
+<h3>1. Run SLAM Node<a class="headerlink" href="#run-slam-node" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>If Bringup is not launched on Mini Pupper, launch Bringup first.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Open a terminal with Ctrl+Alt+T  to connect Mini Pupper.</p></li>
+<li><p>Look at monitor of Mini Pupper to obtain the IP address of it.</p></li>
+<li><p>Use one of the terminals and run the following command to connect to the Mini Pupper. The default password is mangdang.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Bring up basic packages to start Mini Pupper applications.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Open a new terminal from Remote PC with Ctrl + Alt + T and launch the SLAM node.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_slam</span> <span class="n">slam</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="teleoperation">
+<h3>2. Teleoperation<a class="headerlink" href="#teleoperation" title="Permalink to this headline"></a></h3>
+<p>Following the steps below, we can use teleoperation to explore unknown area of the map.</p>
+<p><strong>NOTE: Once SLAM node is successfully up and running. Vigorous change of the linear and angular speed might lower the smoothness of map generated.</strong>
+<strong>WARNING: Make sure to run the Bringup from the Mini Pupper before teleoperation. Be careful when testing the robot on the table as the robot might fall during teleoperation.</strong></p>
+<section id="id1">
+<h4>2.1 Keyboard<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>2.2 Joystick<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>After teleoperation, a map with unknown area revealed will be shown as followed:</p>
+<img alt="../_images/Slam-map.jpg" class="align-center" src="../_images/Slam-map.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="save-the-map">
+<h3>3. Save the map<a class="headerlink" href="#save-the-map" title="Permalink to this headline"></a></h3>
+<p>Following the steps below, the files of the map will be saved.</p>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Use the following command to launch the map_saver_cli node in the nav2_map_server package to create map files.</p></li>
+</ol>
+<p>The map file is saved in the directory where the map_saver_cli node is launched at.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">nav2_map_server</span> <span class="n">map_saver_cli</span> <span class="o">-</span><span class="n">f</span> <span class="o">~/</span><span class="nb">map</span>
+</pre></div>
+</div>
+<p>After running the above command, two files will be generated, namely map.pgm and map.yaml.</p>
+<p>The following pictures shows the .pgm file to be saved.</p>
+<img alt="../_images/map2.png" class="align-center" src="../_images/map2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div style="page-break-before: always;"></div></section>
+</section>
+<section id="navigation">
+<h2><a class="toc-backref" href="#id17">Navigation</a><a class="headerlink" href="#navigation" title="Permalink to this headline"></a></h2>
+<p>Navigation allows the robot to move from one location to the specified destination based on the infomation of a map given from the IMU and the lidar sensor created from SLAM.</p>
+<p>The following video shows how we can use the navigation function to make the Mini Pupper move along the planned path.</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/IC5BmufynyY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>NOTE: Please run the Navigation node on Remote PC.</strong>
+<strong>WARNING: Make sure to run the Bringup from the Mini Pupper before navigation. Put the robot on the ground the prevent the robot from falling during movement.</strong></p>
+<section id="run-navigation-node">
+<h3>1. Run Navigation Node<a class="headerlink" href="#run-navigation-node" title="Permalink to this headline"></a></h3>
+<p>1.If Bringup is not launched on Mini Pupper, launch Bringup first.</p>
+<ul class="simple">
+<li><p>Open a terminal with Ctrl+Alt+T  to connect Mini Pupper.</p></li>
+<li><p>Look at monitor of Mini Pupper to obtain the IP address of it.</p></li>
+</ul>
+<img alt="../_images/IPaddress.jpg" class="align-center" src="../_images/IPaddress.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Use one of the terminals and run the following command to connect to the Mini Pupper. The default password is mangdang.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Bring up basic packages to start Mini Pupper applications.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Open a new terminal from Remote PC with Ctrl + Alt + T and launch the Navigation node.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>. ~/ros2_ws/install/setup.bash
+ros2 launch mini_pupper_navigation navigation.launch.py map:=$HOME/map.yaml
+</pre></div>
+</div>
+<p>The map used in navigation is two-dimensional Occupancy Grid Map (OGM). The white area is collision free area while black area is occupied and inaccessible area, and gray area represents the unknown area.</p>
+</section>
+<section id="estimate-initial-pose">
+<h3>2. Estimate Initial Pose<a class="headerlink" href="#estimate-initial-pose" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Click the 2D Pose Estimate button in the RViz2 menu.</p></li>
+<li><p>Click on the map on location of the robot relative to the map, drag the green arrow, the root of the arrow is the position of the robot while the direction of the arrow will be the orientation of the robot.</p></li>
+<li><p>Repeat step 1 and 2 until the inaccessible area detected by the robot is overlapping completely with the black area on the map.</p></li>
+</ol>
+<img alt="../_images/2D-pose-estimation.jpg" class="align-center" src="../_images/2D-pose-estimation.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="set-navigation-goal">
+<h3>3. Set Navigation Goal<a class="headerlink" href="#set-navigation-goal" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Click the Nav2 Goal button in the RViz2 menu. A path will be planned to guide the robot towards the destination.</p></li>
+<li><p>Click on the map to set the destination of the robot and drag the green arrow toward the direction where the robot will be facing, while the root of the green arrow is the destination at which the robot will finally reach.</p></li>
+</ol>
+<img alt="../_images/Nav2.png" class="align-center" src="../_images/Nav2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div style="page-break-before: always;"></div></section>
+</section>
+<section id="simulation">
+<h2><a class="toc-backref" href="#id18">Simulation</a><a class="headerlink" href="#simulation" title="Permalink to this headline"></a></h2>
+<p>The following steps allows us to simulate the teleoperation, SLAM and Navigation of Mini Pupper using RViz and Gazebo.</p>
+<p><strong>NOTE: Please run the Simulation on Remote PC.</strong></p>
+<section id="rviz-simulation">
+<h3>1. RViz Simulation<a class="headerlink" href="#rviz-simulation" title="Permalink to this headline"></a></h3>
+<section id="launch-simulation-world">
+<h4>1.1 Launch Simulation World<a class="headerlink" href="#launch-simulation-world" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Run the following command to launch bringup the robot simulation without connecting to the robot.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">hardware_connected</span><span class="o">:=</span><span class="kc">False</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Run the following command to launch RViz simulation.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">rviz</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>1.2. Teleoperation<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>1.2.1 Keyboard</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>1.2.2 Joystick</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The following video demonstrates the teleoperation simulation under RViz.</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/O1OXINLR1KQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="gazebo-simulation">
+<h3>2. Gazebo Simulation<a class="headerlink" href="#gazebo-simulation" title="Permalink to this headline"></a></h3>
+<section id="id4">
+<h4>2.1 Launch Simulation World<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Run the following command to launch Gazebo simulation.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_gazebo</span> <span class="n">gazebo</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h4>2.2. Teleoperation:<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>2.2.1 Keyboard</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>2.2.2 Joystick</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The following video demonstrates the teleoperation simulation under Gazebo.</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/O32Zwc3Fqok" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="test-slam-mapping-in-gazebo">
+<h3>3. Test SLAM (Mapping) in Gazebo<a class="headerlink" href="#test-slam-mapping-in-gazebo" title="Permalink to this headline"></a></h3>
+<section id="id6">
+<h4>3.1 Launch Simulation World<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h4>
+<p>Run the following command to launch Gazebo simulation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_gazebo</span> <span class="n">gazebo</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h4>3.2 Run SLAM Node<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h4>
+<p>Open a new terminal from Remote PC with Ctrl + Alt + T and launch the SLAM node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_slam</span> <span class="n">slam</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">use_sim_time</span><span class="o">:=</span><span class="n">true</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4>3.3 Teleoperation<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>3.3.1 Keyboard</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>3.3.2 Joystick</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Run teleoperation node using the following command.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The following video demonstrates the simulation of SLAM under RViz.</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YynF3ozGdUo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id9">
+<h4>3.4 Save the map<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T on remote PC.</p></li>
+<li><p>Use the following command to launch the map_saver_cli node in the nav2_map_server package to create map files.</p></li>
+</ol>
+<ul class="simple">
+<li><p>The map file is saved in the directory where the map_saver_cli node is launched at.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">nav2_map_server</span> <span class="n">map_saver_cli</span> <span class="o">-</span><span class="n">f</span> <span class="o">~/</span><span class="nb">map</span>
+</pre></div>
+</div>
+<p>The following pictures shows the .pgm file to be saved.</p>
+<img alt="../_images/map1.png" class="align-center" src="../_images/map1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="navigation-simulation">
+<h3>4. Navigation Simulation<a class="headerlink" href="#navigation-simulation" title="Permalink to this headline"></a></h3>
+<section id="id10">
+<h4>4.1 Launch Simulation World<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h4>
+<p>Run the following command to launch Gazebo simulation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_gazebo</span> <span class="n">gazebo</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-navigation-simulation">
+<h4>4.2 Launch Navigation Simulation<a class="headerlink" href="#launch-navigation-simulation" title="Permalink to this headline"></a></h4>
+<p>Open a new terminal from Remote PC with Ctrl + Alt + T and launch the Navigation node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_navigation</span> <span class="n">navigation</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">use_sim_time</span><span class="o">:=</span><span class="n">true</span>
+</pre></div>
+</div>
+<p>If you wish to use the map you generated in previous step, you can specify the map path with the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>. ~/ros2_ws/install/setup.bash
+ros2 launch mini_pupper_navigation navigation.launch.py use_sim_time:=true map:=$HOME/map.yaml
+</pre></div>
+</div>
+<p>The map used in navigation is two-dimensional Occupancy Grid Map (OGM). The white area is collision free area while black area is occupied and inaccessible area, and gray area represents the unknown area.</p>
+</section>
+<section id="id11">
+<h4>4.3 Estimate Initial Pose<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Click the 2D Pose Estimate button in the RViz2 menu.</p></li>
+<li><p>Click on the map on location of the robot simulation relative to the map, drag the green arrow, the root of the arrow is the position of the robot simulation while the direction of the arrow will be the orientation of the robot simulation.</p></li>
+<li><p>Repeat step 1 and 2 until the inaccessible area detected by the robot is overlapping completely with the black area on the map.</p></li>
+</ol>
+<img alt="../_images/initial-pose-simulation.jpg" class="align-center" src="../_images/initial-pose-simulation.jpg" />
+</section>
+<section id="id12">
+<h4>4.4 Set Navigation Goal<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Click the Nav2 Goal button in the RViz2 menu. A path will be planned to guide the robot simulation towards the destination.</p></li>
+<li><p>Click on the map to set the destination of the robot simulation and drag the green arrow toward the direction where the robot simulation will be facing, while the root of the green arrow is the destination at which the robot simulation will finally reach.</p></li>
+</ol>
+<img alt="../_images/Nav2.png" class="align-center" src="../_images/Nav2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The following video demonstrates the simulation of navigation under RViz.</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/uvI-3KEDqgU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div style="page-break-before: always;"></div></section>
+</section>
+</section>
+<section id="dance">
+<h2><a class="toc-backref" href="#id19">Dance</a><a class="headerlink" href="#dance" title="Permalink to this headline"></a></h2>
+<p>The video demonstrates the dancing function of Mini Pupper.</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/RkcZOZatPDo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>NOTE: The nodes for playing music and dance cand be executed on both Mini Pupper and Remote PC.</strong></p>
+<section id="install-music-packages">
+<h3>1. Install Music Packages<a class="headerlink" href="#install-music-packages" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Open a terminal with Ctrl+Alt+T to connect Mini Pupper.</p></li>
+<li><p>Look at monitor of Mini Pupper to obtain the IP address of it.</p></li>
+<li><p>Use one of the terminals and run the following command to connect to the Mini Pupper. The default password is mangdang.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<img alt="../_images/IPaddress.jpg" class="align-center" src="../_images/IPaddress.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Use the following command to install required packages for the pupper to play music.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ffmpeg</span> <span class="n">portaudio19</span><span class="o">-</span><span class="n">dev</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pydub</span> <span class="n">pyaudio</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-bringup">
+<h3>2. Launch Bringup<a class="headerlink" href="#launch-bringup" title="Permalink to this headline"></a></h3>
+<p>1.If Bringup is not launched on Mini Pupper, launch Bringup first.</p>
+<ul class="simple">
+<li><p>Open a terminal with Ctrl+Alt+T  to connect Mini Pupper.</p></li>
+<li><p>Look at monitor of Mini Pupper to obtain the IP address of it.</p></li>
+<li><p>Use one of the terminals and run the following command to connect to the Mini Pupper. The default password is mangdang.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Bring up basic packages to start Mini Pupper applications.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-music-node">
+<h3>3. Launch Music Node<a class="headerlink" href="#launch-music-node" title="Permalink to this headline"></a></h3>
+<p>Open a new terminal with Ctrl + Alt + T and launch the Music node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_music</span> <span class="n">music</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-dance-node">
+<h3>4. Launch Dance Node<a class="headerlink" href="#launch-dance-node" title="Permalink to this headline"></a></h3>
+<p>Open a new terminal with Ctrl + Alt + T and launch the Dance node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_dance</span> <span class="n">dance</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SoftwareCalibration.html" class="btn btn-neutral float-left" title="Software Calibration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MachineLearning.html" class="btn btn-neutral float-right" title="Machine Learning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MangDang Technology Co., Limited.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

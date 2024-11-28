@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ソフトウェアキャリブレーション - Mini Pupper 2.0.0-alpha ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ROS2 Guide" href="ROS2Guide.html" />
+    <link rel="prev" title="Assembly" href="Assembly.html" /> 
+<script async="" type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="minipupperdocs" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/guide/SoftwareCalibration.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Mini Pupper         </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">ガイド</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Features.html">特徴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToOrder.html">ご注文方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStartGuide.html">クイックスタートガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Assembly.html">組立</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ソフトウェアキャリブレーション</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#software-calibration-for-mini-pupper">Mini Pupperのソフトウェアキャリブレーション</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calibration-setup">1.キャリブレーションセットアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tools">ツール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-1-startup-raspberry-pi">ステップ1.1 ラズベリーパイを起動する</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-2-log-in">ステップ1.2 ログイン</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-3-set-keyboard-optional">ステップ1.3 キーボードの設定（オプション）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-4-open-ports-for-ssh-optional">ステップ1.4 ssh用のポートを開く（オプション）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#calibration">2.キャリブレーション</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-1-leg-calibration-not-for-ros-image">ステップ2.1 脚のキャリブレーション（ROS画像用ではない）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-2-connect-controller">ステップ2.2 コントローラーの接続</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#software-calibration-for-mini-pupper-2-and-2pro">Mini Pupper2および2Pro用ソフトウェアキャリブレーション</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.キャリブレーションセットアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">ツール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-1-startup">ステップ1.1 スタートアップ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">ステップ1.2 ログイン</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-3-set-your-own-wifi">ステップ1.3 WiFiの設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-4-open-ports-for-ssh-without-hdmi-display">ステップ1.4 HDMIディスプレイなしでssh用のポートを開く</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.キャリブレーション</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-1-leg-calibration">ステップ2.1 脚のキャリブレーション</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-2-use-a-web-browser-to-run">ステップ2.2 ウェブブラウザを使って</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2Guide.html">ROS2ガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">機械学習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning.html">強化学習(RL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultimodalGenAI.html">マルチモーダル生成AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">参考文献</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/Design.html">Mini Pupperのメカニカルデザイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/PCB.html">プリント基板</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/FAQ.html">FAQ（よくある質問）</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
+         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+         <a href="../index.html">Mini Pupper</a>     </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> "</li>
+      <li>ソフトウェアキャリブレーション</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guide/SoftwareCalibration.rst.txt" rel="nofollow"> ページのソースを見る</a>     </li>
+  </ul>
+  <hr />
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="software-calibration">
+<h1><a class="headerlink" href="#software-calibration" title="Permalink to this headline">ソフトウェア・キャリブレーション</a><a class="toc-backref" href="#id5"></a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">内容</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#software-calibration" id="id5">ソフトウェアキャリブレーション</a></p>
+<ul>
+<li><p><a class="reference internal" href="#software-calibration-for-mini-pupper" id="id6">Mini Pupperのソフトウェアキャリブレーション</a></p></li>
+<li><p><a class="reference internal" href="#software-calibration-for-mini-pupper-2-and-2pro" id="id7">Mini Pupper2および2Pro用ソフトウェアキャリブレーション</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="software-calibration-for-mini-pupper">
+<h2><a class="headerlink" href="#software-calibration-for-mini-pupper" title="Permalink to this headline">Mini Pupperの</a><a class="toc-backref" href="#id6">ソフトウェアキャリブレーション</a></h2>
+<section id="calibration-setup">
+<h3>1.キャリブレーション<a class="headerlink" href="#calibration-setup" title="Permalink to this headline">セットアップ</a></h3>
+<section id="tools">
+<h4><a class="headerlink" href="#tools" title="Permalink to this headline">ツール</a></h4>
+<p>キットに含まれる工具に加え、以下のものが必要です。</p>
+<ul class="simple">
+<li><p>USBキーボード</p></li>
+<li><p>USBマウス</p></li>
+<li><p>HDMIディスプレイ</p></li>
+<li><p>ディスプレイとRaspberry Piの接続用マイクロHDMIケーブル</p></li>
+</ul>
+</section>
+<section id="step-1-1-startup-raspberry-pi">
+<h4>ステップ1.1 ラズベリー<a class="headerlink" href="#step-1-1-startup-raspberry-pi" title="Permalink to this headline">パイを</a>起動する</h4>
+<ul class="simple">
+<li><p>ラズベリーパイとディスプレイをmicroHDMIケーブルで接続する。</p></li>
+<li><p>USB キーボードとマウスを Raspberry pi に接続する。</p></li>
+<li><p>Mini Pupperのバッテリーボタンを3秒間長押しすると、ラズベリーパイが起動します。</p></li>
+<li><p>画面にUbuntuが表示されれば成功です。Mini Pupperのディスプレイにも顔が表示されているはずです。</p></li>
+</ul>
+<img alt="../_images/101.jpg" class="align-center" src="../_images/101.jpg" />
+</section>
+<section id="step-1-2-log-in">
+<h4>ステップ1.2 ログイン<a class="headerlink" href="#step-1-2-log-in" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>画面上のubuntuボタンを押してログインする。</p></li>
+<li><p>デフォルトのユーザー名：ubuntu</p></li>
+<li><p>デフォルトのパスワード: mangdang</p></li>
+</ul>
+</section>
+<section id="step-1-3-set-keyboard-optional">
+<h4>ステップ1.3 キーボードの設定（オプション<a class="headerlink" href="#step-1-3-set-keyboard-optional" title="Permalink to this headline">）</a></h4>
+<ul class="simple">
+<li><p>キーボードの種類、例えば日本語キーボードを変更したい場合は、この設定が必要です。左下のメニューボタンを押し、settingsと入力すると設定が表示されます。</p></li>
+</ul>
+<img alt="../_images/102.jpg" class="align-center" src="../_images/102.jpg" />
+<ul class="simple">
+<li><p>Region &amp; Languageを選択し、Input Sourcesの＋を押す。表示された画面で、otherの3つの点を選択し、Japaneseと入力して選択する。日本語を入力して選択します。</p></li>
+</ul>
+</section>
+<section id="step-1-4-open-ports-for-ssh-optional">
+<h4>ステップ1.4 ssh用のポートを開く（オプション<a class="headerlink" href="#step-1-4-open-ports-for-ssh-optional" title="Permalink to this headline">）</a></h4>
+<ul class="simple">
+<li><p>PCからUbuntuにssh接続を試みます。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="mf">192.168</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>PCからssh接続ができない場合は、次のような設定が必要かもしれない。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ufw</span> <span class="n">allow</span> <span class="mi">22</span>
+<span class="n">sudo</span> <span class="n">ufw</span> <span class="n">reload</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ファイアウォールが実行されていない場合は、次のようにしてください。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ufw</span> <span class="n">enable</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="calibration">
+<h3>2.<a class="headerlink" href="#calibration" title="Permalink to this headline">キャリブレーション</a></h3>
+<section id="step-2-1-leg-calibration-not-for-ros-image">
+<h4>ステップ2.1 脚のキャリブレーション（ROS画像用ではない<a class="headerlink" href="#step-2-1-leg-calibration-not-for-ros-image" title="Permalink to this headline">）</a></h4>
+<p>以下のキャリブレーション・ビデオクリップをご参照ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/lbnJb5Eb3gw?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><ul class="simple">
+<li><p>Mini Pupperのキャリブレーションの際、サーボホーンの位置がずれていると、キャリブレーションがうまくいかず、サーボを壊してしまうことがあります。 以下の簡単なガイドに従ってください（ROSイメージではありません）。</p></li>
+<li><p>Mini Pupperが4本の脚を除いて組み立て済みであることを確認してください。</p></li>
+</ul>
+<img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
+<ul class="simple">
+<li><p>電源を入れ、デスクトップのキャリブレーションツールアイコンをダブルクリックして起動します。</p></li>
+</ul>
+<img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
+<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
+<p>各サーボのキャリブレーションを行う → 「Update」ボタンを押して設定を保存する → 「×」ボタンを押してキャリブレーションを終了し、保存します。</p>
+<p>バーを動かすか、バーの近くのスペース位置をクリックして、各サーボのキャリブレーションを行います。</p>
+<p>リセットボタン：前回からやり直したい場合。</p>
+<p>リストアボタン工場出荷時の設定に戻します。</p>
+<ul class="simple">
+<li><p>キャリブレーション GUI ツールを使用して、#1 #4 #7 #10 ヒップサーボを水平位置にキャリブレーションします。</p></li>
+</ul>
+<img alt="../_images/52.jpg" class="align-center" src="../_images/52.jpg" />
+<img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
+<ul class="simple">
+<li><p>その後、下の写真のように4本の脚を正しい位置に手で組み立てる。</p></li>
+</ul>
+<img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
+<ul class="simple">
+<li><p>キャリブレーションGUIツールを使って脚の位置を最適化します。各脚について、すべての脚が45度の角度になるようにバーを動かします。脚の角度は、画面上のスライドバーの位置に連動して変化します。ただし、スライドバーが動かない場合は、手順が間違っています。</p></li>
+<li><p>iPhoneの傾きセンサーアプリ、定規、分度器を使って角度を測ることができる。私も定規と分度器を使った。</p></li>
+</ul>
+<img alt="../_images/106.jpg" class="align-center" src="../_images/106.jpg" />
+<ul class="simple">
+<li><p>脚の正確な傾きを測るのは少し難しいので、方眼紙のようなグリッドに脚を置き、前後左右の位置が同じであることを確認し、最終調整するのがよい。</p></li>
+</ul>
+<img alt="../_images/107.jpg" class="align-center" src="../_images/107.jpg" />
+<ul class="simple">
+<li><p>すべての脚が図のように45°の傾きになったら、Updateを押して設定を保存します。× を押してキャリブレーションアプリケーションを閉じます。</p></li>
+</ul>
+</section>
+<section id="step-2-2-connect-controller">
+<h4>ステップ2.2<a class="headerlink" href="#step-2-2-connect-controller" title="Permalink to this headline">コントローラの</a>接続</h4>
+<ul class="simple">
+<li><p>次の章をご覧ください。</p></li>
+<li><p>コントローラーで操作できればOK。</p></li>
+</ul>
+<div style="page-break-before: always;"></div></section>
+</section>
+</section>
+<section id="software-calibration-for-mini-pupper-2-and-2pro">
+<h2><a class="toc-backref" href="#id7">Mini Pupper2および</a><a class="headerlink" href="#software-calibration-for-mini-pupper-2-and-2pro" title="Permalink to this headline">2</a><a class="toc-backref" href="#id7">Pro用ソフトウェアキャリブレーション</a></h2>
+<section id="id1">
+<h3>1.キャリブレーション<a class="headerlink" href="#id1" title="Permalink to this headline">セットアップ</a></h3>
+<section id="id2">
+<h4><a class="headerlink" href="#id2" title="Permalink to this headline">ツール</a></h4>
+<p>初心者の場合、キットに含まれる道具に加えて、以下のものが必要である。</p>
+<ul class="simple">
+<li><p>USBキーボード</p></li>
+<li><p>HDMIディスプレイ</p></li>
+<li><p>ディスプレイとキャリーボードを接続するマイクロHDMIケーブル</p></li>
+</ul>
+<img alt="../_images/101.v2.jpg" class="align-center" src="../_images/101.v2.jpg" />
+<p>PCからMini Pupperにsshで接続し、ステップ1.4を参照してください。</p>
+</section>
+<section id="step-1-1-startup">
+<h4>ステップ1.1<a class="headerlink" href="#step-1-1-startup" title="Permalink to this headline">スタート</a>アップ</h4>
+<ul class="simple">
+<li><p>キャリーボードとディスプレイをmicroHDMIケーブルで接続する。</p></li>
+<li><p>USBキーボードをキャリーボードに接続する。</p></li>
+<li><p>Mini Pupperのバッテリーボタンを3秒間長押しして起動します。</p></li>
+<li><p>画面にUbuntuが表示されれば成功です。また、Mini PupperのディスプレイにIPアドレスまたは「IP: no IPv4 address」が表示されるはずです。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h4>ステップ1.2 ログイン<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>画面上のubuntuボタンを押してログインする。</p></li>
+<li><p>デフォルトのユーザー名：ubuntu</p></li>
+<li><p>デフォルトのパスワード: mangdang</p></li>
+</ul>
+</section>
+<section id="step-1-3-set-your-own-wifi">
+<h4>ステップ1.3 WiFi<a class="headerlink" href="#step-1-3-set-your-own-wifi" title="Permalink to this headline"></a>。</h4>
+<ul class="simple">
+<li><p>WiFi設定ファイル(50-cloud-init.yaml)を編集し、WiFiを自分のものに設定する。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">netplan</span><span class="o">/</span><span class="mi">50</span><span class="o">-</span><span class="n">cloud</span><span class="o">-</span><span class="n">init</span><span class="o">.</span><span class="n">yaml</span>
+<span class="c1"># Edit and save</span>
+<span class="n">sudo</span> <span class="n">netplan</span> <span class="n">apply</span>
+<span class="n">sudo</span> <span class="n">reboot</span>
+</pre></div>
+</div>
+<img alt="../_images/101.v2.png" class="align-center" src="../_images/101.v2.png" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mangdangroboticsclub/mini_pupper_web_controller">mini_pupper_web_controllerを</a>参照することもできます。</p></li>
+</ul>
+</section>
+<section id="step-1-4-open-ports-for-ssh-without-hdmi-display">
+<h4>ステップ1.4 HDMI<a class="headerlink" href="#step-1-4-open-ports-for-ssh-without-hdmi-display" title="Permalink to this headline">ディスプレイ</a>なしでssh用のポートを開く</h4>
+<ul>
+<li><p>Mini Pupperが使用するデフォルトのWiFiを設定するには、携帯電話を使用します。</p>
+<blockquote>
+<div><p>WiFi名: Mangdang</p>
+<p>パスワード: mangdang</p>
+</div></blockquote>
+</li>
+<li><p>ロボットの電源を入れ、LCDディスプレイをチェックする</p>
+<blockquote>
+<div><p>LCDに "IP: no IPv4 address "と表示されたら、ロボットをもう一度再起動してください。</p>
+</div></blockquote>
+</li>
+<li><p>LCDにIPアドレスが表示されたら、PCからロボットにssh接続します。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="mf">192.168</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>PCからssh接続ができない場合は、次のような設定が必要かもしれない。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ufw</span> <span class="n">allow</span> <span class="mi">22</span>
+<span class="n">sudo</span> <span class="n">ufw</span> <span class="n">reload</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ファイアウォールが実行されていない場合は、次のようにしてください。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ufw</span> <span class="n">enable</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h3>2.<a class="headerlink" href="#id4" title="Permalink to this headline">キャリブレーション</a></h3>
+<section id="step-2-1-leg-calibration">
+<h4>ステップ2.1 脚のキャリブレーション<a class="headerlink" href="#step-2-1-leg-calibration" title="Permalink to this headline"></a></h4>
+<p>以下のキャリブレーション・ビデオクリップをご参照ください。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/96z3NyjY2t0?mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><ul class="simple">
+<li><p>その後、下の写真のように4本の脚を正しい位置に手で組み立てる。</p></li>
+</ul>
+<img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
+<ul class="simple">
+<li><p>脚の正確な傾きを測るのは少し難しいので、方眼紙のようなグリッドに脚を置き、前後左右の位置が同じであることを確認し、最終調整するのがよい。</p></li>
+</ul>
+<img alt="../_images/107.jpg" class="align-center" src="../_images/107.jpg" />
+<ul class="simple">
+<li><p>すべての脚が図のように45°の傾きになったら、"s "を押して設定を保存します。q "を押してキャリブレーションアプリケーションを終了します。</p></li>
+</ul>
+</section>
+<section id="step-2-2-use-a-web-browser-to-run">
+<h4>ステップ2.2 ウェブブラウザを使って<a class="headerlink" href="#step-2-2-use-a-web-browser-to-run" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>ウェブブラウザで、<a class="reference external" href="http://x.x.x.x:8080">http://x.x.x.x:8080</a>。x.x.x.x は、あなたのmini_pupperのIPアドレスで、例えば、<a class="reference external" href="http://192.168.5.196:8080">http://1</a>92.168.5.196:8080。</p></li>
+<li><p>Controller "タブの "Activate "ボタンをクリックする。</p></li>
+<li><p>Pupper」タブの「Activate/Deactivate」ボタンをクリックします。</p></li>
+<li><p>左上の「≡」アイコンをクリックする。</p></li>
+<li><p>Walk "オプションを選ぶ。</p></li>
+<li><p>Walk/Rest "ボタンをクリックする。</p></li>
+<li><p>スクロールバーでMini Pupperを操作する</p></li>
+</ul>
+<img alt="../_images/webGuide.png" class="align-center" src="../_images/webGuide.png" />
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Assembly.html" class="btn btn-neutral float-left" title="Assembly" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 前へ</a> <a href="ROS2Guide.html" class="btn btn-neutral float-right" title="ROS2 Guide" accesskey="n" rel="next">次へ<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a></div>
+
+ <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2024, MangDang Technology Co., Limited.</p>
+  </div>
+
+ <a href="https://readthedocs.org">Read the Docsによって</a>提供された<a href="https://github.com/readthedocs/sphinx_rtd_theme">テーマを使って</a>、<a href="https://www.sphinx-doc.org/">Sphinxで</a>構築されています。</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

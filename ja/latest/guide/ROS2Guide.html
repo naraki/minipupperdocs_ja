@@ -1,0 +1,1039 @@
+﻿<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROS2 ガイド - Mini Pupper 2.0.0-alpha ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Machine Learning" href="MachineLearning.html" />
+    <link rel="prev" title="Software Calibration" href="SoftwareCalibration.html" /> 
+<script async="" type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="minipupperdocs" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/guide/ROS2Guide.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Mini Pupper         </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">ガイド</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Features.html">特徴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToOrder.html">ご注文方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStartGuide.html">クイックスタートガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Assembly.html">組立</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SoftwareCalibration.html">ソフトウェア校正</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS2ガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">インストール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pc-setup">1.PCセットアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-ros-2-humble">1.1 ROSのインストール 2 Humble</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-mini-pupper-ros-repository">1.2 Mini Pupper ROSリポジトリのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-dependent-ros-2-packages-and-build-package">1.3 依存するROS 2パッケージのインストールとパッケージのビルド</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#export-robot-model">1.4.ロボットモデルの輸出</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mini-pupper-setup">2.Mini Pupperセットアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#image-flashing">2.1 画像点滅</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wifi-setting">2.2 無線LANの設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robot-model-setting">2.3 ロボットモデルの設定</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-mini-pupper-to-pc">3.Mini PupperとPCの接続</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">クイックスタート</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#joystick-setup">1.ジョイスティックの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bringup">2.持ち出し</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#teleoporation">3.テレオポレーション</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#keyboard">3.1 キーボード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#joystick">3.2 ジョイスティック</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#slam">SLAM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-slam-node">1.SLAMノードの実行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#teleoperation">2.遠隔操作</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">2.1 キーボード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">2.2 ジョイスティック</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#save-the-map">3.地図を保存する</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#navigation">ナビゲーション</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-navigation-node">1.ナビゲーション・ノードの実行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#estimate-initial-pose">2.初期ポーズを推定する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-navigation-goal">3.ナビゲーション・ゴールの設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#simulation">シミュレーション</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rviz-simulation">1.RVizシミュレーション</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#launch-simulation-world">1.1 打ち上げシミュレーションの世界</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.2.遠隔操作</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gazebo-simulation">2.ガゼボ・シミュレーション</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2.1 打ち上げシミュレーションの世界</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">2.2.遠隔操作</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#test-slam-mapping-in-gazebo">3.ガゼボでSLAM（マッピング）を試す</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.1 打ち上げシミュレーションの世界</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.2 SLAMノードの実行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.3 遠隔操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.4 地図を保存する</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#navigation-simulation">4.ナビゲーションシミュレーション</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">4.1 打ち上げシミュレーションの世界</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#launch-navigation-simulation">4.2 打ち上げナビゲーション・シミュレーション</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">4.3 初期ポーズの推定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">4.4 ナビゲーションゴールの設定</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dance">ダンス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-music-packages">1.音楽パッケージのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-bringup">2.ブリングアップを起動する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-music-node">3.ミュージックノードを起動する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-dance-node">4.ダンスノードを立ち上げる</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">機械学習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning.html">強化学習(RL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultimodalGenAI.html">マルチモーダル生成AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">参考文献</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/Design.html">Mini Pupperのメカニカルデザイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/PCB.html">プリント基板</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/FAQ.html">FAQ（よくある質問）</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
+         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+         <a href="../index.html">Mini Pupper</a>     </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> "</li>
+      <li>ROS2ガイド</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guide/ROS2Guide.rst.txt" rel="nofollow"> ページのソースを見る</a>     </li>
+  </ul>
+  <hr />
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ros2-guide">
+<h1><a class="toc-backref" href="#id13">ROS2</a><a class="headerlink" href="#ros2-guide" title="Permalink to this headline">ガイド</a><a class="toc-backref" href="#id13"></a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">内容</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#ros2-guide" id="id13">ROS2ガイド</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installation" id="id14">インストール</a></p></li>
+<li><p><a class="reference internal" href="#quick-start" id="id15">クイックスタート</a></p></li>
+<li><p><a class="reference internal" href="#slam" id="id16">SLAM</a></p></li>
+<li><p><a class="reference internal" href="#navigation" id="id17">ナビゲーション</a></p></li>
+<li><p><a class="reference internal" href="#simulation" id="id18">シミュレーション</a></p></li>
+<li><p><a class="reference internal" href="#dance" id="id19">ダンス</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="installation">
+<h2><a class="headerlink" href="#installation" title="Permalink to this headline">インストール</a><a class="toc-backref" href="#id14"></a></h2>
+<ul class="simple">
+<li><p>Mini PupperのROS2インストールパッケージは、私たちのコントリビューターの一人である@Tiryohによって書かれた<a class="reference external" href="https://github.com/Tiryoh/ros2_setup_scripts_ubuntu">ros2_setup_scriptsに基づいて</a>います。</p></li>
+<li><p>Mini PupperのROS2バージョンは<a class="reference external" href="https://github.com/chvmp/champ">Champ</a>オープンソースプロジェクトをベースにしており、SLAMとナビゲーション機能にいくつかの変更を加えました。</p></li>
+<li><p>ライダーセンサーをサポートするMini Pupperのソフトウェアは、<a class="reference external" href="https://github.com/ldrobotSensorTeam/ldlidar_stl_ros2">ldlidar_stl_ros2</a>オープンソースプロジェクトに基づいています。</p></li>
+</ul>
+<p>PCとMini Pupperが同じWiFiに接続されていることを確認してください。</p>
+<p>以下のステップで、リモートPCとMini Pupperのros2をセットアップすることができます。</p>
+<section id="pc-setup">
+<h3>1.PC<a class="headerlink" href="#pc-setup" title="Permalink to this headline">セットアップ</a></h3>
+<p>PCセットアップはMini PupperをリモートコントロールするためのPC（デスクトップまたはラップトップPC）に対応しています。これらのコマンドをMini Pupperに適用しないでください。</p>
+<p><strong>警告：本章の内容は、Mini Pupperを制御するリモートPC（デスクトップまたはラップトップPC）に対応しています。これらのコマンドをMini Pupper上のRaspberry PiやMini Pupper 2上のCompute Module 4に適用しないでください。</strong></p>
+<p><strong>注：この説明はLinuxのUbuntu 22.04とROS2 Humbleでテストしました。</strong></p>
+<section id="install-ros-2-humble">
+<h4>1.1 ROSのインストール 2<a class="headerlink" href="#install-ros-2-humble" title="Permalink to this headline">Humble</a></h4>
+<p>リモートPCからCtrl+Alt+Tでターミナルを開く。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Tiryoh</span><span class="o">/</span><span class="n">ros2_setup_scripts_ubuntu</span><span class="o">.</span><span class="n">git</span>
+<span class="o">~/</span><span class="n">ros2_setup_scripts_ubuntu</span><span class="o">/</span><span class="n">ros2</span><span class="o">-</span><span class="n">humble</span><span class="o">-</span><span class="n">ros</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">main</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">ros</span><span class="o">/</span><span class="n">humble</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+</pre></div>
+</div>
+<p>ROS 2のインストール後、ワークスペースでMini Pupper ROSパッケージをダウンロードします。</p>
+</section>
+<section id="install-mini-pupper-ros-repository">
+<h4>1.2 Mini Pupper ROS<a class="headerlink" href="#install-mini-pupper-ros-repository" title="Permalink to this headline">リポジトリの</a>インストール</h4>
+<p>リモートPCからCtrl+Alt+Tでターミナルを開く。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">src</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">src</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mangdangroboticsclub</span><span class="o">/</span><span class="n">mini_pupper_ros</span><span class="o">.</span><span class="n">git</span> <span class="o">-</span><span class="n">b</span> <span class="n">ros2</span><span class="o">-</span><span class="n">dev</span> <span class="n">mini_pupper_ros</span>
+<span class="n">vcs</span> <span class="kn">import</span> <span class="o">&lt;</span> <span class="n">mini_pupper_ros</span><span class="o">/.</span><span class="n">minipupper</span><span class="o">.</span><span class="n">repos</span> <span class="o">--</span><span class="n">recursive</span>
+</pre></div>
+</div>
+</section>
+<section id="install-dependent-ros-2-packages-and-build-package">
+<h4>1.3 依存する ROS 2 パッケージのインストールと<a class="headerlink" href="#install-dependent-ros-2-packages-and-build-package" title="Permalink to this headline">パッケージの</a>ビルド</h4>
+<p>リモートPCからCtrl+Alt+Tでターミナルを開く。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">ros2_ws</span>
+<span class="n">rosdep</span> <span class="n">install</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">paths</span> <span class="n">src</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">src</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">humble</span><span class="o">-</span><span class="n">teleop</span><span class="o">-</span><span class="n">twist</span><span class="o">-</span><span class="n">keyboard</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">humble</span><span class="o">-</span><span class="n">teleop</span><span class="o">-</span><span class="n">twist</span><span class="o">-</span><span class="n">joy</span>
+<span class="n">colcon</span> <span class="n">build</span> <span class="o">--</span><span class="n">symlink</span><span class="o">-</span><span class="n">install</span>
+</pre></div>
+</div>
+</section>
+<section id="export-robot-model">
+<h4>1.4.輸出ロボット<a class="headerlink" href="#export-robot-model" title="Permalink to this headline">モデル</a></h4>
+<ol class="arabic simple">
+<li><p>ターミナルで~/.bashrcをテキストエディタで開く。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>ファイルの最後までスクロールする。</p></li>
+</ol>
+<img alt="../_images/bashrc.png" class="align-center" src="../_images/bashrc.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>以下の行を追加して、ロボットモデルをコンピュータにエクスポートしてください。ROBOT_MODELパラメータには、あなたのロボットモデルに合わせて、mini_pupper, mini_pupper_2の中から適切なキーワードを使用してください。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ROBOT_MODEL</span><span class="o">=</span><span class="n">mini_pupper_2</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Ctrl+Sでファイルを保存し、Ctrl+Xで終了する。</p></li>
+<li><p>以下のコマンドを実行して変更を適用する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mini-pupper-setup">
+<h3>2.<a class="headerlink" href="#mini-pupper-setup" title="Permalink to this headline">Mini Pupperセットアップ</a></h3>
+<section id="image-flashing">
+<h4>2.1 画像点滅<a class="headerlink" href="#image-flashing" title="Permalink to this headline"></a></h4>
+<p>以下の手順はMini PupperのROS2環境をご自身でセットアップするためのものです。 また、Mini Pupper側で<a class="reference external" href="https://drive.google.com/drive/folders/1ZF4vulHbXvVF4RPWWGxEe7rxcJ9LyeEu?usp=sharing">ビルド済みのROSイメージ</a>（"YYYYMMDD_MD-Puppy2_ROS2Humble_Ubuntu22.04.img "または "YYYYMMDD_MD-Puppy1_ROS2Humble_Ubuntu22.04.img"）をダウンロードすることもできます。日付とロボットの機種に応じて適切なイメージを選択してください。</p>
+<ol class="arabic simple">
+<li><p>イメージはアダプターを使用してカードにフラッシュすることができます。PCにmicroSDスロットがない場合は、microSDカードリーダーを使用してイメージを書き込んでください。</p></li>
+<li><p>公式サイトからubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xzをダウンロードし、以下のガイドに従ってSDカードにフラッシュする。</p></li>
+<li><p><a class="reference external" href="https://etcher.balena.io/">https://etcher.balena.io/</a>、balenaEtcherをダウンロードして<a class="reference external" href="https://etcher.balena.io/">ください。</a></p></li>
+<li><p>青いボタンを押して、画像のダウンロード先を選択し、画像を選択します。</p></li>
+</ol>
+<img alt="../_images/choose-image.png" class="align-center" src="../_images/choose-image.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>青いボタンを押して、画像をフラッシュする先（SDカードのアドレス）を選択します。</p></li>
+</ol>
+<img alt="../_images/target1.png" class="align-center" src="../_images/target1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/target2.png" class="align-center" src="../_images/target2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>フラッシュボタンを押すと、下の画像が表示されます。プロセスが完了するまで待ちます。</p></li>
+</ol>
+<img alt="../_images/flashing.png" class="align-center" src="../_images/flashing.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/validating.png" class="align-center" src="../_images/validating.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="wifi-setting">
+<h4>2.2<a class="headerlink" href="#wifi-setting" title="Permalink to this headline">Wifi</a>設定</h4>
+<ol class="arabic simple">
+<li><p>カードをMini Pupperカードポートに差し込み、独自の無線LANをセットアップする。</p></li>
+</ol>
+<img alt="../_images/Sd-card-reader.jpg" class="align-center" src="../_images/Sd-card-reader.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>以下のコマンドを実行して、パッパーのネットワーク設定を編集します。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">netplan</span><span class="o">/</span><span class="mi">50</span><span class="o">-</span><span class="n">cloud</span><span class="o">-</span><span class="n">init</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>エディターが開いたら、Mangdangとmangdangを実際の無線LANのSSIDとパスワードに置き換えながら、以下のように内容を編集してください。</p>
+<img alt="../_images/netplan-yaml.png" class="align-center" src="../_images/netplan-yaml.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Ctrl+Sでファイルを保存し、Ctrl+Xで終了する。</p></li>
+<li><p>以下のコマンドを実行して再起動し、実際の無線LANに接続する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">netplan</span> <span class="n">apply</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
+<span class="n">reboot</span>
+</pre></div>
+</div>
+</section>
+<section id="robot-model-setting">
+<h4>2.3 ロボットモデルの<a class="headerlink" href="#robot-model-setting" title="Permalink to this headline">設定</a></h4>
+<ol class="arabic simple">
+<li><p>再起動後、ターミナルで~/.bashrcをテキストエディタで開く。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>ファイルの最後までスクロールする。</p></li>
+</ol>
+<img alt="../_images/bashrc.png" class="align-center" src="../_images/bashrc.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>以下の行を追加して、ロボットモデルをコンピュータにエクスポートしてください。ROBOT_MODELパラメータには、あなたのロボットモデルに合わせて、mini_pupper, mini_pupper_2の中から適切なキーワードを使用してください。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ROBOT_MODEL</span><span class="o">=</span><span class="n">mini_pupper_2</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Ctrl+Sでファイルを保存し、Ctrl+Xで終了する。</p></li>
+<li><p>以下のコマンドを実行して変更を適用する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="connecting-mini-pupper-to-pc">
+<h3>3.Mini Pupperと<a class="headerlink" href="#connecting-mini-pupper-to-pc" title="Permalink to this headline">PCの</a>接続</h3>
+<ol class="arabic simple">
+<li><p>Ctrl+Alt+Tで2つのターミナルを2回開きます。1つはMini Pupperに接続するため、もう1つはPCローカル用です。</p></li>
+<li><p>Mini Pupperのモニターを見て、IPアドレスを取得する。</p></li>
+</ol>
+<img alt="../_images/IPaddress.jpg" class="align-center" src="../_images/IPaddress.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>ターミナルを使用し、以下のコマンドを実行してMini Pupperに接続してください。デフォルトのパスワードは "mangdang "です。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>両方のターミナルで~/.bashrcをテキストエディタで開く。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>両端末のファイルを最後までスクロールする。</p></li>
+</ol>
+<img alt="../_images/bashrc.png" class="align-center" src="../_images/bashrc.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>両端末に以下の行を追加して接続を設定する。入力される数字はどのようなものでも構いませんが、両端末で同じでなければなりません。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ROS_DOMAIN_ID</span><span class="o">=</span><span class="mi">42</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Ctrl+Sでファイルを保存し、Ctrl+Xで終了する。</p></li>
+<li><p>以下のコマンドを実行して変更を適用する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
+<li><p>両方のターミナルで以下のコマンドを使用し、PCとMini Pupperが接続されていることを確認します：</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">node</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li><p>両端子の出力を比較する：</p></li>
+</ol>
+<img alt="../_images/node-list.png" class="align-center" src="../_images/node-list.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>両端末の出力が画像と同じようなノードリストを表示していれば、PCとMini Pupperは接続されています。</p>
+<p><strong>注意：ノードのリストは進行中のノードに依存し、画像とまったく同じではないかもしれない。</strong></p>
+<div style="page-break-before: always;"></div></section>
+</section>
+<section id="quick-start">
+<h2><a class="toc-backref" href="#id15">クイック</a><a class="headerlink" href="#quick-start" title="Permalink to this headline">スタート</a><a class="toc-backref" href="#id15"></a></h2>
+<section id="joystick-setup">
+<h3>1.ジョイスティック<a class="headerlink" href="#joystick-setup" title="Permalink to this headline">設定</a></h3>
+<p>以下の手順で、ジョイスティックにROS2ソフトウェアを接続し、設定することができます。</p>
+<ol class="arabic simple">
+<li><p>コントローラの HOME ボタンを押す。</p></li>
+</ol>
+<img alt="../_images/Bluetooth-connection-button.jpg" class="align-center" src="../_images/Bluetooth-connection-button.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>あなたのPC上で利用可能なBluetoothデバイスを検索し、それに接続します。</p></li>
+</ol>
+<img alt="../_images/controller-connection.png" class="align-center" src="../_images/controller-connection.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/controller-address.png" class="align-center" src="../_images/controller-address.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>下のビデオは、接続中のフラッシュライトの色の変化を示しています。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/GzUFk6fD8s0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>以下のコマンドでジョイスティックの名前を確認する。</p></li>
+</ol>
+<p>ターミナルの出力：この場合、ジョイスティックの名前は "js0 "である。</p>
+<img alt="../_images/dev-input.png" class="align-center" src="../_images/dev-input.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>以下のコマンドで、ジョイスティックが接続されているかどうかを確認する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">joystick</span>
+<span class="n">jstest</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>ジョイスティックが接続されている場合は、次のような出力があります。</p>
+<img alt="../_images/jstest.png" class="align-center" src="../_images/jstest.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="bringup">
+<h3>2.<a class="headerlink" href="#bringup" title="Permalink to this headline">ブリングアップ</a></h3>
+<p>以下の手順でソフトウェアを起動し、Mini Pupperハードウェアを起動します。</p>
+<ol class="arabic simple">
+<li><p>Ctrl+Alt+T でターミナルを開き、Mini Pupper に接続します。</p></li>
+<li><p>Mini Pupperのモニターを見て、IPアドレスを取得する。</p></li>
+<li><p>いずれかのターミナルを使用し、以下のコマンドを実行してMini Pupperに接続します。デフォルトのパスワードはmangdangです。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Mini Pupperアプリケーションを起動するための基本パッケージを呼び出します。ビルドされたパッケージをソースするコマンド、「. ~/ros2_ws/install/setup.bash」は、「./ros2_ws/install/setup.zsh "に置き換えることができます。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>ロボットモデルがMini Pupper 2の場合、ターミナル出力は以下のようになります。</p>
+<img alt="../_images/Bringup1.png" class="align-center" src="../_images/Bringup1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/Bringup2.png" class="align-center" src="../_images/Bringup2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>トピックスやサービスは、以下のコマンドで一覧できます。</p></li>
+</ol>
+<ul class="simple">
+<li><p>トピック一覧</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">topic</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<img alt="../_images/topic-list.png" class="align-center" src="../_images/topic-list.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>サービス一覧</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">service</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<img alt="../_images/service-list.png" class="align-center" src="../_images/service-list.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="teleoporation">
+<h3>3.<a class="headerlink" href="#teleoporation" title="Permalink to this headline">テレオポレーション</a></h3>
+<p>以下の手順で、キーボードまたはジョイスティックを使ってMini Pupperを遠隔操作することができます。</p>
+<p><strong>警告：遠隔操作の前に、必ずMini Pupperからブリングアップを実行してください。ロボットを遠隔操作し、ロボットをテーブル上でテストする際は、ロボットが落下する可能性があるため注意してください。</strong></p>
+<section id="keyboard">
+<h4>3.1<a class="headerlink" href="#keyboard" title="Permalink to this headline">キーボード</a></h4>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+<p>端子出力：</p>
+<img alt="../_images/keyboard-teleop.png" class="align-center" src="../_images/keyboard-teleop.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>以下のガイドに従って、キーボードを使ってパッパーを運転することができます。</p>
+<img alt="../_images/Keyboard-guide.jpg" class="align-center" src="../_images/Keyboard-guide.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>ビデオでは、各キーボードボタンがロボットの動きに与える影響を示している。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/M9aV55VnKUw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="joystick">
+<h4>3.2<a class="headerlink" href="#joystick" title="Permalink to this headline">ジョイスティック</a></h4>
+<p><strong>注意: ROS2のジョイスティックノードのボタンのデザインは、他のセクションで述べられている、ROS以外のプログラムで使用されるものとは異なります。</strong></p>
+<p><strong>警告：遠隔操作の前に、必ずMini Pupperからブリングアップを実行してください。ロボットを遠隔操作し、ロボットをテーブル上でテストする際は、ロボットが落下する可能性があるため注意してください。</strong></p>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>端子出力：</p>
+<img alt="../_images/joystick-teleop-node.png" class="align-center" src="../_images/joystick-teleop-node.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>以下のガイドに従って、ジョイスティックを使ってパッパーを運転することができます。</p>
+<img alt="../_images/Controller-guide.jpg" class="align-center" src="../_images/Controller-guide.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>ビデオでは、ジョイスティックの各ボタンがロボットの動きに与える影響を示している。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/T8kwO7fDiqE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div style="page-break-before: always;"></div></section>
+</section>
+</section>
+<section id="slam">
+<h2><a class="headerlink" href="#slam" title="Permalink to this headline">SLAM</a></h2>
+<p>SLAM（Simultaneous Localization and Mapping）とは、任意の空間内の現在位置を推定して地図を描く技術です。以下の手順で、Mini Pupperを使って周辺地図を描画します。</p>
+<p><strong>注意：リモートPC上でSLAMノードを実行してください。</strong><strong>操作を実行する前に、必ずMini Pupperからブリングアップを起動してください。</strong></p>
+<section id="run-slam-node">
+<h3>1.SLAMを実行する<a class="headerlink" href="#run-slam-node" title="Permalink to this headline">Node</a></h3>
+<ol class="arabic simple">
+<li><p>Bringup が Mini Pupper で起動されていない場合は、まず Bringup を起動してください。</p></li>
+</ol>
+<ul class="simple">
+<li><p>Ctrl+Alt+T でターミナルを開き、Mini Pupper に接続します。</p></li>
+<li><p>Mini Pupperのモニターを見て、IPアドレスを取得する。</p></li>
+<li><p>いずれかのターミナルを使用し、以下のコマンドを実行してMini Pupperに接続します。デフォルトのパスワードはmangdangです。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Mini Pupperのアプリケーションを開始するための基本パッケージを表示します。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>リモートPCからCtrl + Alt + Tで新しいターミナルを開き、SLAMノードを起動する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_slam</span> <span class="n">slam</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="teleoperation">
+<h3>2.<a class="headerlink" href="#teleoperation" title="Permalink to this headline">遠隔</a>操作</h3>
+<p>以下の手順で、遠隔操作を使って地図上の未知のエリアを探索することができる。</p>
+<p><strong>注意：SLAMノードが正常に起動し、実行されると、直線速度と角速度を激しく変化させると、生成されるマップの平滑性が低下する可能性があります。直線速度と角速度を激しく変更すると、生成されるマップの滑らかさが低下する可能性があります。</strong><strong>警告：遠隔操作の前に、必ずMini Pupperからブリングアップを実行してください。遠隔操作中にロボットが落下する可能性があるため、テーブル上でロボットをテストする際は注意してください。</strong></p>
+<section id="id1">
+<h4>2.1<a class="headerlink" href="#id1" title="Permalink to this headline">キーボード</a></h4>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>2.2<a class="headerlink" href="#id2" title="Permalink to this headline">ジョイスティック</a></h4>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>遠隔操作の後、以下のように未知の領域が明らかになった地図が表示される：</p>
+<img alt="../_images/Slam-map.jpg" class="align-center" src="../_images/Slam-map.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="save-the-map">
+<h3>3.地図を保存する<a class="headerlink" href="#save-the-map" title="Permalink to this headline"></a></h3>
+<p>以下の手順に従って、地図のファイルが保存されます。</p>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>次のコマンドを使用して、nav2_map_serverパッケージのmap_saver_cliノードを起動し、マップファイルを作成します。</p></li>
+</ol>
+<p>マップ・ファイルはmap_saver_cliノードが起動したディレクトリに保存される。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">nav2_map_server</span> <span class="n">map_saver_cli</span> <span class="o">-</span><span class="n">f</span> <span class="o">~/</span><span class="nb">map</span>
+</pre></div>
+</div>
+<p>上記のコマンドを実行すると、map.pgmとmap.yamlという2つのファイルが生成される。</p>
+<p>以下の写真は保存される.pgmファイルです。</p>
+<img alt="../_images/map2.png" class="align-center" src="../_images/map2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div style="page-break-before: always;"></div></section>
+</section>
+<section id="navigation">
+<h2><a class="toc-backref" href="#id17">ナビゲーション</a><a class="headerlink" href="#navigation" title="Permalink to this headline"></a></h2>
+<p>ナビゲーションは、SLAMによって作成されたIMUとライダーセンサから与えられる地図の情報に基づいて、ロボットがある場所から指定された目的地まで移動することを可能にする。</p>
+<p>次のビデオでは、ナビゲーション機能を使ってMini Pupperを予定されたパスに沿って移動させる方法を紹介しています。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/IC5BmufynyY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>注意：リモートPC上でナビゲーションノードを実行してください。</strong><strong>警告：ナビゲーションの前に必ずMini Pupperからブリングアップを実行してください。移動中のロボットの落下を防ぐため、ロボットを地面に置いてください。</strong></p>
+<section id="run-navigation-node">
+<h3>1.<a class="headerlink" href="#run-navigation-node" title="Permalink to this headline">ナビゲーション・ノードを</a>実行</h3>
+<p>1.Mini Pupperでブリングアップが起動されていない場合、最初にブリングアップを起動します。</p>
+<ul class="simple">
+<li><p>Ctrl+Alt+T でターミナルを開き、Mini Pupper に接続します。</p></li>
+<li><p>Mini Pupperのモニターを見て、IPアドレスを取得する。</p></li>
+</ul>
+<img alt="../_images/IPaddress.jpg" class="align-center" src="../_images/IPaddress.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>いずれかのターミナルを使用し、以下のコマンドを実行してMini Pupperに接続します。デフォルトのパスワードはmangdangです。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Mini Pupperのアプリケーションを開始するための基本パッケージを表示します。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>リモートPCからCtrl + Alt + Tで新しいターミナルを開き、ナビゲーションノードを起動します。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>. ~/ros2_ws/install/setup.bash
+ros2 launch mini_pupper_navigation navigation.launch.py map:=$HOME/map.yaml
+</pre></div>
+</div>
+<p>ナビゲーションに使用される地図は2次元のOGM（Occupancy Grid Map）である。白い領域は衝突のない領域であり、黒い領域は占有領域と進入禁止領域、灰色の領域は未知の領域を表す。</p>
+</section>
+<section id="estimate-initial-pose">
+<h3>2.初期<a class="headerlink" href="#estimate-initial-pose" title="Permalink to this headline">ポーズの</a>推定</h3>
+<ol class="arabic simple">
+<li><p>RViz2メニューの2D Pose Estimateボタンをクリックします。</p></li>
+<li><p>地図上のロボットの位置をクリックし、緑色の矢印をドラッグします。矢印の根元がロボットの位置で、矢印の方向がロボットの向きになります。</p></li>
+<li><p>ロボットが検出した進入不可能なエリアが地図上の黒いエリアと完全に重なるまで、ステップ1と2を繰り返す。</p></li>
+</ol>
+<img alt="../_images/2D-pose-estimation.jpg" class="align-center" src="../_images/2D-pose-estimation.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="set-navigation-goal">
+<h3>3.<a class="headerlink" href="#set-navigation-goal" title="Permalink to this headline">ナビゲーションゴールの</a>設定</h3>
+<ol class="arabic simple">
+<li><p>RViz2メニューのNav2 Goalボタンをクリックします。目的地に向かってロボットを誘導する経路が計画されます。</p></li>
+<li><p>マップをクリックしてロボットの目的地を設定し、ロボットが向いている方向に向かって緑の矢印をドラッグします。</p></li>
+</ol>
+<img alt="../_images/Nav2.png" class="align-center" src="../_images/Nav2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div style="page-break-before: always;"></div></section>
+</section>
+<section id="simulation">
+<h2><a class="headerlink" href="#simulation" title="Permalink to this headline">シミュレーション</a><a class="toc-backref" href="#id18"></a></h2>
+<p>以下のステップでは、RVizとGazeboを使用して、Mini Pupperの遠隔操作、SLAM、ナビゲーションのシミュレーションを行います。</p>
+<p><strong>注意：リモートPCでシミュレーションを実行してください。</strong></p>
+<section id="rviz-simulation">
+<h3>1.RVizシミュレーション<a class="headerlink" href="#rviz-simulation" title="Permalink to this headline"></a></h3>
+<section id="launch-simulation-world">
+<h4>1.1 打ち上げシミュレーション<a class="headerlink" href="#launch-simulation-world" title="Permalink to this headline">世界</a></h4>
+<ol class="arabic simple">
+<li><p>以下のコマンドを実行し、ロボットに接続せずにロボットシミュレーションを起動します。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">hardware_connected</span><span class="o">:=</span><span class="kc">False</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>以下のコマンドを実行してRVizシミュレーションを起動します。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">rviz</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>1.2.<a class="headerlink" href="#id3" title="Permalink to this headline">遠隔</a>操作</h4>
+<ul class="simple">
+<li><p>1.2.1 キーボード</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>1.2.2 ジョイスティック</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>次のビデオはRVizでの遠隔操作シミュレーションのデモです。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/O1OXINLR1KQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="gazebo-simulation">
+<h3>2.ガゼボ<a class="headerlink" href="#gazebo-simulation" title="Permalink to this headline">シミュレーション</a></h3>
+<section id="id4">
+<h4>2.1 打ち上げシミュレーション<a class="headerlink" href="#id4" title="Permalink to this headline">世界</a></h4>
+<ol class="arabic simple">
+<li><p>以下のコマンドを実行して、Gazeboシミュレーションを起動します。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_gazebo</span> <span class="n">gazebo</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h4>2.2.遠隔操作<a class="headerlink" href="#id5" title="Permalink to this headline">:</a></h4>
+<ul class="simple">
+<li><p>2.2.1 キーボード</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>2.2.2 ジョイスティック</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>次のビデオは、Gazeboの下での遠隔操作シミュレーションのデモです。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/O32Zwc3Fqok" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="test-slam-mapping-in-gazebo">
+<h3>3.<a class="headerlink" href="#test-slam-mapping-in-gazebo" title="Permalink to this headline">Gazeboで</a>SLAM（マッピング）をテスト</h3>
+<section id="id6">
+<h4>3.1 打ち上げシミュレーション<a class="headerlink" href="#id6" title="Permalink to this headline">世界</a></h4>
+<p>以下のコマンドを実行して、Gazeboシミュレーションを起動します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_gazebo</span> <span class="n">gazebo</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h4>3.2 SLAMの実行<a class="headerlink" href="#id7" title="Permalink to this headline">Node</a></h4>
+<p>リモートPCからCtrl + Alt + Tで新しいターミナルを開き、SLAMノードを起動する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_slam</span> <span class="n">slam</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">use_sim_time</span><span class="o">:=</span><span class="n">true</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4>3.3<a class="headerlink" href="#id8" title="Permalink to this headline">遠隔</a>操作</h4>
+<ul class="simple">
+<li><p>3.3.1 キーボード</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>3.3.2 ジョイスティック</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>以下のコマンドを使用して、遠隔操作ノードを実行する。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">teleop_twist_joy</span> <span class="n">teleop</span><span class="o">-</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">joy_dev</span><span class="o">:=/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="p">{</span><span class="n">NAME_OF_JOYSTICK</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>次のビデオでは、RVizでのSLAMのシミュレーションを示しています。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YynF3ozGdUo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id9">
+<h4>3.4 地図を保存する<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>リモートPCでCtrl+Alt+Tでターミナルを開く。</p></li>
+<li><p>次のコマンドを使用して、nav2_map_serverパッケージのmap_saver_cliノードを起動し、マップファイルを作成します。</p></li>
+</ol>
+<ul class="simple">
+<li><p>マップ・ファイルはmap_saver_cliノードが起動したディレクトリに保存される。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">run</span> <span class="n">nav2_map_server</span> <span class="n">map_saver_cli</span> <span class="o">-</span><span class="n">f</span> <span class="o">~/</span><span class="nb">map</span>
+</pre></div>
+</div>
+<p>以下の写真は保存される.pgmファイルです。</p>
+<img alt="../_images/map1.png" class="align-center" src="../_images/map1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="navigation-simulation">
+<h3>4.ナビゲーションシミュレーション<a class="headerlink" href="#navigation-simulation" title="Permalink to this headline"></a></h3>
+<section id="id10">
+<h4>4.1 打ち上げシミュレーション<a class="headerlink" href="#id10" title="Permalink to this headline">世界</a></h4>
+<p>以下のコマンドを実行して、Gazeboシミュレーションを起動します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_gazebo</span> <span class="n">gazebo</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-navigation-simulation">
+<h4>4.2 打ち上げナビゲーションシミュレーション<a class="headerlink" href="#launch-navigation-simulation" title="Permalink to this headline"></a></h4>
+<p>リモートPCからCtrl + Alt + Tで新しいターミナルを開き、ナビゲーションノードを起動します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_navigation</span> <span class="n">navigation</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">use_sim_time</span><span class="o">:=</span><span class="n">true</span>
+</pre></div>
+</div>
+<p>前のステップで生成したマップを使用したい場合は、次のコマンドでマップのパスを指定します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>. ~/ros2_ws/install/setup.bash
+ros2 launch mini_pupper_navigation navigation.launch.py use_sim_time:=true map:=$HOME/map.yaml
+</pre></div>
+</div>
+<p>ナビゲーションに使用される地図は2次元のOGM（Occupancy Grid Map）である。白い領域は衝突のない領域であり、黒い領域は占有領域と進入禁止領域、灰色の領域は未知の領域を表す。</p>
+</section>
+<section id="id11">
+<h4>4.3 初期<a class="headerlink" href="#id11" title="Permalink to this headline">ポーズの</a>推定</h4>
+<ol class="arabic simple">
+<li><p>RViz2メニューの2D Pose Estimateボタンをクリックします。</p></li>
+<li><p>地図上のロボットシミュレーションの位置をクリックし、緑色の矢印をドラッグします。矢印の根元がロボットシミュレーションの位置で、矢印の方向がロボットシミュレーションの向きになります。</p></li>
+<li><p>ロボットが検出した進入不可能なエリアが地図上の黒いエリアと完全に重なるまで、ステップ1と2を繰り返す。</p></li>
+</ol>
+<img alt="../_images/initial-pose-simulation.jpg" class="align-center" src="../_images/initial-pose-simulation.jpg" />
+</section>
+<section id="id12">
+<h4>4.4<a class="headerlink" href="#id12" title="Permalink to this headline">ナビゲーションゴールの</a>設定</h4>
+<ol class="arabic simple">
+<li><p>RViz2メニューのNav2 Goalボタンをクリックします。目的地に向かってロボットシミュレーションを誘導する経路が計画されます。</p></li>
+<li><p>ロボットシミュレーションの目的地を設定するために地図上をクリックし、ロボットシミュレーションが向いている方向に向かって緑の矢印をドラッグします。</p></li>
+</ol>
+<img alt="../_images/Nav2.png" class="align-center" src="../_images/Nav2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>次のビデオはRVizでのナビゲーションのシミュレーションです。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/uvI-3KEDqgU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div style="page-break-before: always;"></div></section>
+</section>
+</section>
+<section id="dance">
+<h2><a class="headerlink" href="#dance" title="Permalink to this headline">ダンス</a><a class="toc-backref" href="#id19"></a></h2>
+<p>ビデオはMini Pupperのダンス機能を実演している。</p>
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/RkcZOZatPDo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>注：音楽とダンスを再生するノードは、Mini PupperとリモートPCの両方で実行できます。</strong></p>
+<section id="install-music-packages">
+<h3>1.音楽<a class="headerlink" href="#install-music-packages" title="Permalink to this headline">パッケージの</a>インストール</h3>
+<ol class="arabic simple">
+<li><p>Ctrl+Alt+T でターミナルを開き、Mini Pupper に接続します。</p></li>
+<li><p>Mini Pupperのモニターを見て、IPアドレスを取得する。</p></li>
+<li><p>いずれかのターミナルを使用し、以下のコマンドを実行してMini Pupperに接続します。デフォルトのパスワードはmangdangです。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<img alt="../_images/IPaddress.jpg" class="align-center" src="../_images/IPaddress.jpg" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>パッパーが音楽を再生するために必要なパッケージをインストールするには、以下のコマンドを使用します。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ffmpeg</span> <span class="n">portaudio19</span><span class="o">-</span><span class="n">dev</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pydub</span> <span class="n">pyaudio</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-bringup">
+<h3>2.<a class="headerlink" href="#launch-bringup" title="Permalink to this headline">Bringup</a>。</h3>
+<p>1.Mini Pupperでブリングアップが起動されていない場合、最初にブリングアップを起動します。</p>
+<ul class="simple">
+<li><p>Ctrl+Alt+T でターミナルを開き、Mini Pupper に接続します。</p></li>
+<li><p>Mini Pupperのモニターを見て、IPアドレスを取得する。</p></li>
+<li><p>いずれかのターミナルを使用し、以下のコマンドを実行してMini Pupperに接続します。デフォルトのパスワードはmangdangです。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">ubuntu</span><span class="o">@</span><span class="p">{</span><span class="n">IP_ADDRESS_OF_MINI_PUPPER</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Mini Pupperのアプリケーションを開始するための基本パッケージを表示します。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_bringup</span> <span class="n">bringup</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-music-node">
+<h3>3.ミュージック・<a class="headerlink" href="#launch-music-node" title="Permalink to this headline">ノードを</a>立ち上げる</h3>
+<p>Ctrl + Alt + Tで新しいターミナルを開き、Musicノードを起動します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_music</span> <span class="n">music</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-dance-node">
+<h3>4.ダンス<a class="headerlink" href="#launch-dance-node" title="Permalink to this headline">ノードを</a>立ち上げる</h3>
+<p>Ctrl + Alt + Tで新しいターミナルを開き、Danceノードを起動する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/</span><span class="n">ros2_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">mini_pupper_dance</span> <span class="n">dance</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SoftwareCalibration.html" class="btn btn-neutral float-left" title="Software Calibration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 前へ</a> <a href="MachineLearning.html" class="btn btn-neutral float-right" title="Machine Learning" accesskey="n" rel="next">次へ<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a></div>
+
+ <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2024, MangDang Technology Co., Limited.</p>
+  </div>
+
+ <a href="https://readthedocs.org">Read the Docsによって</a>提供された<a href="https://github.com/readthedocs/sphinx_rtd_theme">テーマを使って</a>、<a href="https://www.sphinx-doc.org/">Sphinxで</a>構築されています。</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
